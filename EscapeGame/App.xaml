@@ -1,0 +1,12 @@
+﻿<Application x:Class="EscapeGame.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:EscapeGame"
+             StartupUri="Views/MainView.xaml">
+    <Application.Resources>
+        <SolidColorBrush x:Key="MainBackground" Color="Black" Opacity="0.8"/>
+        <SolidColorBrush x:Key="MainForeground" Color="WhiteSmoke" Opacity="0.8"/>
+        <SolidColorBrush x:Key="MainHighlight" Color="#FF0E6681" Opacity="0.8"/>
+        <SolidColorBrush x:Key="SideHighlight" Color="#FF12A2CE" Opacity="0.8"/>
+    </Application.Resources>
+</Application>
