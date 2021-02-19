@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using EscapeGame.ViewModels;
 
-namespace EscapeGame
+namespace EscapeGame.Views
 {
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
