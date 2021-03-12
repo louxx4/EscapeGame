@@ -15,7 +15,7 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
         Height="450" Width="800" 
-        WindowStyle="None" ResizeMode="CanResizeWithGrip">
+        WindowStyle="None" ResizeMode="NoResize" WindowState="{Binding PWindowState}">
     <Window.DataContext>
         <vm:MainViewModel/>
     </Window.DataContext>
@@ -34,32 +34,48 @@
         <materialDesign:DrawerHost Grid.RowSpan="3" HorizontalAlignment="Left" MinWidth="200" 
                                    IsLeftDrawerOpen="{Binding PIsMenuOpen, Mode=TwoWay}">
             <materialDesign:DrawerHost.LeftDrawerContent>
-                <DockPanel MinWidth="200"
-                           Background="#FF005934">
-                    <ToggleButton 
-                        Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
-                        DockPanel.Dock="Top"
-                        HorizontalAlignment="Right" 
-                        Margin="16"
-                        IsChecked="{Binding PIsMenuOpen, Mode=TwoWay}"/>
+                <DockPanel MinWidth="200" Background="{StaticResource MaterialDesignColumnHeader}">
                 </DockPanel>
             </materialDesign:DrawerHost.LeftDrawerContent>
         </materialDesign:DrawerHost>
-        <DockPanel>
+        <DockPanel VerticalAlignment="Bottom" Grid.Row="3" Grid.ColumnSpan="3">
             <materialDesign:ColorZone
-                    Padding="16"
+                    Padding="5"
                     materialDesign:ShadowAssist.ShadowDepth="Depth2"
-                    Mode="PrimaryMid"
-                    DockPanel.Dock="Top">
+                    Mode="PrimaryDark"
+                    DockPanel.Dock="Left"
+                    MouseDown="ColorZone_MouseDown">
                 <DockPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <ToggleButton
+                    <ToggleButton
                                 x:Name="MenuToggleButton"
                                 Style="{StaticResource MaterialDesignHamburgerToggleButton}"
-                                IsChecked="False"
-                                Command="{Binding CmdOpenMenu}"
-                                AutomationProperties.Name="HamburgerToggleButton"/>
-                    </StackPanel>
+                                IsChecked="{Binding PIsMenuOpen}"
+                                AutomationProperties.Name="HamburgerToggleButton"
+                                ToolTip="Show backpack"/>
+                    <Button
+                        DockPanel.Dock="Right"
+                        HorizontalAlignment="Right"
+                        Style="{StaticResource MaterialDesignIconForegroundButton}"
+                        Command="{Binding CmdClose}"
+                        ToolTip="Escape the escape game. Cheater.">
+                        <materialDesign:PackIcon Kind="WindowClose" Width="35" Height="35"/>
+                    </Button>
+                    <ToggleButton
+                        DockPanel.Dock="Right"
+                        HorizontalAlignment="Right"
+                        Style="{StaticResource MaterialDesignIconForegroundButton}"
+                        IsChecked="{Binding PIsMaximized, Mode=TwoWay}"
+                        ToolTip="Maximize window">
+                        <materialDesign:PackIcon Kind="WindowMaximize" Width="30" Height="30"/>
+                    </ToggleButton>
+                    <Button
+                        DockPanel.Dock="Right"
+                        HorizontalAlignment="Right"
+                        Style="{StaticResource MaterialDesignIconForegroundButton}"
+                        Command="{Binding CmdMinimize}"
+                        ToolTip="Minimize window">
+                        <materialDesign:PackIcon Kind="WindowMinimize"/>
+                    </Button>
                 </DockPanel>
             </materialDesign:ColorZone>
         </DockPanel>

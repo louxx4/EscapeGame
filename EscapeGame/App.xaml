@@ -7,7 +7,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <md:CustomColorTheme BaseTheme="Dark" PrimaryColor="DarkGreen" SecondaryColor="SlateBlue" />
+                <md:CustomColorTheme BaseTheme="Dark" PrimaryColor="DarkSlateGray" SecondaryColor="DarkOrange" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -16,50 +16,9 @@
             <!--Images -->
             <!-- x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x -->
 
-            <BitmapImage x:Key="imgMenu" UriSource="pack://application:,,,/Resources/Images/Menu.png"/>
-
             <!-- x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x -->
             <!--Buttons -->
             <!-- x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x -->
-
-            <Style x:Key="StyleToggleButtonImage" TargetType="{x:Type ToggleButton}">
-                <Setter Property="OverridesDefaultStyle" Value="True" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type ToggleButton}">
-                            <Border>
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Opacity"  Value="0.6"/>
-                                </Trigger>
-                                <Trigger Property="IsChecked" Value="True">
-                                    <Setter Property="Opacity" Value="0.6"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-            <Style x:Key="styleCloseButton" TargetType="{x:Type Button}">
-                <Setter Property="OverridesDefaultStyle" Value="True" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Grid x:Name="Panel">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                            </Grid>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="Panel" Property="Background" Value="IndianRed"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
 
         </ResourceDictionary>
     </Application.Resources>

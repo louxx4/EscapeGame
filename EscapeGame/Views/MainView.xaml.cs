@@ -25,5 +25,10 @@ namespace EscapeGame.Views
         {
             InitializeComponent();
         }
+
+        private void ColorZone_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
     }
 }

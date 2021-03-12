@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using CommandHelper;
 using EscapeGame.Models;
@@ -15,7 +16,8 @@ namespace EscapeGame.ViewModels
         #region Variables
 
         private bool _isMenuOpen;
-        private ICommand _cmdOpenMenu;
+        private bool _isWindowMaximized;
+        private WindowState _windowState;
 
         #endregion
 
@@ -26,9 +28,14 @@ namespace EscapeGame.ViewModels
 
         }
 
-        private void OpenMenu()
+        private void CloseApp()
         {
-            PIsMenuOpen = true;
+            Application.Current.Shutdown();
+        }
+
+        private void MinimizeWindow()
+        {
+            PWindowState = WindowState.Minimized;
         }
 
         #endregion
@@ -42,6 +49,36 @@ namespace EscapeGame.ViewModels
             {
                 _isMenuOpen = value;
                 notifyOnPropertyChanged("PIsMenuOpen");
+            }
+        }
+
+        public WindowState PWindowState
+        {
+            get
+            { return _windowState; }
+            set
+            {
+                if (_windowState != value)
+                {
+                    _windowState = value;
+                    notifyOnPropertyChanged("PWindowState");
+                }
+            }
+        }
+
+        public bool PIsMaximized
+        {
+            get
+            { return _isWindowMaximized; }
+            set
+            {
+                if (_isWindowMaximized != value)
+                {
+                    _isWindowMaximized = value;
+                    if (value) PWindowState = WindowState.Maximized;
+                    else PWindowState = WindowState.Normal;
+                    notifyOnPropertyChanged("PIsMaximized");
+                }
             }
         }
 
@@ -64,11 +101,19 @@ namespace EscapeGame.ViewModels
 
         #region Commands
 
-        public ICommand CmdOpenMenu
+        public ICommand CmdClose
         {
             get
             {
-                return _cmdOpenMenu = new RelayCommand(c => OpenMenu());
+                return new RelayCommand(o => CloseApp());
+            }
+        }
+
+        public ICommand CmdMinimize
+        {
+            get
+            {
+                return new RelayCommand(o => MinimizeWindow());
             }
         }
 
