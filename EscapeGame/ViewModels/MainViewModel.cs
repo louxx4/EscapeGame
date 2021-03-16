@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -11,13 +12,14 @@ using EscapeGame.Models;
 
 namespace EscapeGame.ViewModels
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : ViewModel, INotifyPropertyChanged
     {
         #region Variables
 
-        private bool _isMenuOpen;
-        private bool _isWindowMaximized;
+        private bool _isMenuOpen, _isWindowMaximized, _isHelpShown;
         private WindowState _windowState;
+        private int _room = 0;
+        private 
 
         #endregion
 
@@ -25,7 +27,7 @@ namespace EscapeGame.ViewModels
 
         public MainViewModel()
         {
-
+            
         }
 
         private void CloseApp()
@@ -42,13 +44,23 @@ namespace EscapeGame.ViewModels
 
         #region Properties
 
+        public int PRoom
+        {
+            get { return _room; }
+            set
+            {
+                _room = value;
+                NotifyOnPropertyChanged("PRoom");
+            }
+        }
+
         public bool PIsMenuOpen
         {
             get { return _isMenuOpen; }
             set
             {
                 _isMenuOpen = value;
-                notifyOnPropertyChanged("PIsMenuOpen");
+                NotifyOnPropertyChanged("PIsMenuOpen");
             }
         }
 
@@ -61,7 +73,7 @@ namespace EscapeGame.ViewModels
                 if (_windowState != value)
                 {
                     _windowState = value;
-                    notifyOnPropertyChanged("PWindowState");
+                    NotifyOnPropertyChanged("PWindowState");
                 }
             }
         }
@@ -77,8 +89,18 @@ namespace EscapeGame.ViewModels
                     _isWindowMaximized = value;
                     if (value) PWindowState = WindowState.Maximized;
                     else PWindowState = WindowState.Normal;
-                    notifyOnPropertyChanged("PIsMaximized");
+                    NotifyOnPropertyChanged("PIsMaximized");
                 }
+            }
+        }
+
+        public bool PShowHelp
+        {
+            get { return _isHelpShown; }
+            set
+            {
+                _isHelpShown = value;
+                NotifyOnPropertyChanged("PShowHelp");
             }
         }
 
@@ -92,7 +114,7 @@ namespace EscapeGame.ViewModels
 
         #region EventHandler
 
-        private void notifyOnPropertyChanged(string propName)
+        private void NotifyOnPropertyChanged(string propName)
         {
             PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propName));
         }
