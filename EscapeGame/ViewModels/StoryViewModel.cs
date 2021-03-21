@@ -13,17 +13,30 @@ namespace EscapeGame.ViewModels
     {
         #region Variables
 
+        private string _message;
+
         #endregion
 
         #region Main
 
         public StoryViewModel(Game game) : base(game)
         {
+            PMessage = "Hallo und herzlich willkommen zu Escape la familia."
+                //"Mein Name ist Robs und ich werde Sie durch den groben Spielablauf führen.";
         }
 
         #endregion
 
         #region Properties
+
+        public string PMessage
+        {
+            get { return _message; }
+            set {
+                _message = value;
+                NotifyOnPropertyChanged("PMessage");
+            }
+        }
 
         #endregion
 
