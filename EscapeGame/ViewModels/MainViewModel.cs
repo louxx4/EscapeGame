@@ -12,14 +12,15 @@ using EscapeGame.Models;
 
 namespace EscapeGame.ViewModels
 {
-    public class MainViewModel : ViewModel, INotifyPropertyChanged
+    public class MainViewModel : INotifyPropertyChanged
     {
         #region Variables
 
         private bool _isMenuOpen, _isWindowMaximized, _isHelpShown;
         private WindowState _windowState;
-        private int _room = 0;
-        private 
+        private RoomID _roomID = RoomID.Start;
+        private List<Room> _roomList;
+        private readonly Game _game = new Game();
 
         #endregion
 
@@ -27,7 +28,16 @@ namespace EscapeGame.ViewModels
 
         public MainViewModel()
         {
-            
+            _roomList = new List<Room> {
+                new StartRoom(new StartViewModel(_game)),
+                new StoryRoom(new StoryViewModel(_game))
+            };
+            _game.GameStarted += _game_GameStarted1;
+        }
+
+        private void _game_GameStarted1(RoomID currentRoom)
+        {
+            PRoomID = currentRoom;
         }
 
         private void CloseApp()
@@ -44,13 +54,22 @@ namespace EscapeGame.ViewModels
 
         #region Properties
 
-        public int PRoom
+        public RoomID PRoomID
         {
-            get { return _room; }
+            get { return _roomID; }
             set
             {
-                _room = value;
-                NotifyOnPropertyChanged("PRoom");
+                _roomID = value;
+                NotifyOnPropertyChanged("PRoomID");
+            }
+        }
+
+        public Room PRoom
+        {
+            get
+            {
+                if (_roomList.Count > 0) return _roomList[(int)PRoomID];
+                else return null;
             }
         }
 

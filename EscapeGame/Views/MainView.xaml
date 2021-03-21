@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EscapeGame"
+        xmlns:models="clr-namespace:EscapeGame.Models"
         xmlns:views="clr-namespace:EscapeGame.Views"
         xmlns:ctrls="clr-namespace:EscapeGame.Views.Controls"
         xmlns:vm="clr-namespace:EscapeGame.ViewModels"
@@ -13,17 +14,21 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        Background="{DynamicResource MaterialDesignPaper}"
+        Background="Transparent" AllowsTransparency="True"
         FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
         Height="450" Width="800" 
-        WindowStyle="None" ResizeMode="NoResize" WindowState="{Binding PWindowState}">
+        WindowStyle="None" ResizeMode="NoResize" 
+        WindowState="{Binding PWindowState}">
     <Window.DataContext>
         <vm:MainViewModel/>
     </Window.DataContext>
     <Window.Resources>
         <DataTemplate x:Key="Start">
-            <ctrls:StartControl DataContext="{Binding PCtrlViewModel}"/>
+            <ctrls:StartControl DataContext="{Binding PRoom.PVm}"/>
+        </DataTemplate>
+        <DataTemplate x:Key="Story">
+            <ctrls:StoryControl DataContext="{Binding PRoom.PVm}"/>
         </DataTemplate>
     </Window.Resources>
     <Grid>
@@ -32,23 +37,25 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-
-        <ContentControl 
-            Grid.Row="0" Grid.Column="0"
-            Content="{Binding}">
+        <Label Grid.Row="1" Background="Black" Opacity="0.6"/>
+        <ContentControl Content="{Binding}">
             <ContentControl.Style>
                 <Style TargetType="ContentControl">
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding PRoom}" Value="0">
+                        <DataTrigger Binding="{Binding PRoomID}" Value="0">
                             <Setter Property="ContentControl.ContentTemplate" Value="{StaticResource Start}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding PRoomID}" Value="1">
+                            <Setter Property="ContentControl.ContentTemplate" Value="{StaticResource Story}"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </ContentControl.Style>
         </ContentControl>
-        <materialDesign:DrawerHost Grid.RowSpan="3" HorizontalAlignment="Left" MinWidth="200" 
+        <materialDesign:DrawerHost Grid.RowSpan="3" HorizontalAlignment="Left" MinWidth="150" 
                                    IsLeftDrawerOpen="{Binding PIsMenuOpen, Mode=TwoWay}">
             <materialDesign:DrawerHost.LeftDrawerContent>
                 <DockPanel 
@@ -57,11 +64,12 @@
                 </DockPanel>
             </materialDesign:DrawerHost.LeftDrawerContent>
         </materialDesign:DrawerHost>
-        <DockPanel VerticalAlignment="Bottom" Grid.Row="1">
+        <DockPanel VerticalAlignment="Bottom" Grid.Row="2">
             <materialDesign:ColorZone
                     Padding="5"
                     materialDesign:ShadowAssist.ShadowDepth="Depth2"
                     Mode="PrimaryDark"
+                    Background="#FF2F081D"
                     DockPanel.Dock="Left"
                     MouseDown="ColorZone_MouseDown">
                 <DockPanel>

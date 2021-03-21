@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace EscapeGame.Models
 {
-    public class MainModel
+    public enum RoomID
     {
+        Start = 0, Story = 1
     }
 }

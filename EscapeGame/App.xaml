@@ -9,15 +9,10 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <md:CustomColorTheme BaseTheme="Dark" PrimaryColor="DarkSlateGray" SecondaryColor="DarkOrange" />
+                <md:CustomColorTheme BaseTheme="Dark" PrimaryColor="DimGray" SecondaryColor="#FFAA4E2C"/>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
-            <!--<DataTemplate DataType="{x:Type vm:StartViewModel}">
-                <ctrls:StartControl/>
-            </DataTemplate>-->
-
         </ResourceDictionary>
     </Application.Resources>
 </Application>

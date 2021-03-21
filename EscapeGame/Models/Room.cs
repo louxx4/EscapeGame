@@ -7,21 +7,22 @@ using EscapeGame.ViewModels;
 
 namespace EscapeGame.Models
 {
-    public class Room
+    public abstract class Room
     {
         #region Variables
 
-        private int _id;
-        private ViewModel _vm;
+        private readonly ViewModel _vm;
+        private bool _discovered;
 
         #endregion
 
         #region Main
 
-        public Room()
+        public Room(ViewModel vm)
         {
-
+            this._vm = vm;
         }
+
 
         #endregion
 
@@ -30,9 +31,15 @@ namespace EscapeGame.Models
         public ViewModel PVm
         {
             get { return _vm; }
+            set { }
+        }
+
+        public bool PDiscovered
+        {
+            get { return _discovered; }
             set
             {
-                _vm = value;
+                _discovered = true;
             }
         }
 

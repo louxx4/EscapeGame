@@ -1,5 +1,4 @@
-﻿using CommandHelper;
-using EscapeGame.Models;
+﻿using EscapeGame.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +9,7 @@ using System.Windows.Input;
 
 namespace EscapeGame.ViewModels
 {
-    public class StartViewModel : ViewModel, INotifyPropertyChanged
+    public class StoryViewModel : ViewModel, INotifyPropertyChanged
     {
         #region Variables
 
@@ -18,11 +17,8 @@ namespace EscapeGame.ViewModels
 
         #region Main
 
-        public StartViewModel(Game game) : base(game) { }
-
-        private void StartGame()
+        public StoryViewModel(Game game) : base(game)
         {
-            _game.Start();
         }
 
         #endregion
@@ -48,13 +44,6 @@ namespace EscapeGame.ViewModels
 
         #region Commands
 
-        public ICommand CmdStart
-        {
-            get
-            {
-                return new RelayCommand(o => StartGame());
-            }
-        }
         #endregion
     }
 }
