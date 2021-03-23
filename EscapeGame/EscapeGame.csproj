@@ -99,6 +99,10 @@
     <Compile Include="Views\Controls\StartControl.xaml.cs">
       <DependentUpon>StartControl.xaml</DependentUpon>
     </Compile>
+    <Page Include="Resources\ImagesDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Controls\StoryControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

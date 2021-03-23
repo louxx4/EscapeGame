@@ -40,7 +40,7 @@
             <RowDefinition Height="10"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="1" Background="Black" Opacity="0.6"/>
+        <Label Grid.Row="1" Background="#FF2F081D" Opacity="0.4"/>
         <ContentControl Content="{Binding}">
             <ContentControl.Style>
                 <Style TargetType="ContentControl">

@@ -32,10 +32,10 @@ namespace EscapeGame.ViewModels
                 new StartRoom(new StartViewModel(_game)),
                 new StoryRoom(new StoryViewModel(_game))
             };
-            _game.GameStarted += _game_GameStarted1;
+            _game.GameStarted += _game_GameStarted;
         }
 
-        private void _game_GameStarted1(RoomID currentRoom)
+        private void _game_GameStarted(RoomID currentRoom)
         {
             PRoomID = currentRoom;
         }

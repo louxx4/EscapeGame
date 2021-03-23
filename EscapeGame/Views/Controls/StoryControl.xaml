@@ -4,7 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:local="clr-namespace:EscapeGame.Views.Controls" xmlns:viewmodels="clr-namespace:EscapeGame.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:StoryViewModel}"
+             xmlns:local="clr-namespace:EscapeGame.Views.Controls"
+             xmlns:vm="clr-namespace:EscapeGame.ViewModels"
+             d:DataContext="{x:Type vm:StoryViewModel}"          
              mc:Ignorable="d" Background="#FF1C1C1C"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -19,12 +21,12 @@
         <materialDesign:Card 
             Grid.Column="1" Margin="0 100 80 -80"
             UniformCornerRadius="80">
-            <TextBlock TextWrapping="Wrap" Text="{Binding PMessage}" 
-                       HorizontalAlignment="Center" Margin="0 10"
+            <TextBlock TextWrapping="Wrap" Text="{Binding PMessage}"
+                       HorizontalAlignment="Center" Margin="10 15"
                        Foreground="WhiteSmoke"
                        FontSize="25" FontFamily="Calibri"/>
         </materialDesign:Card>
-        <Image Source="/Resources/People/robs_talking1.png"
+        <Image Source="{Binding PPerson}"
                Grid.Row="1" Grid.ColumnSpan="2" Margin="0 0 150 0"/>
     </Grid>
 </UserControl>

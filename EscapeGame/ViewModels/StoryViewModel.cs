@@ -5,7 +5,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace EscapeGame.ViewModels
 {
@@ -14,6 +16,7 @@ namespace EscapeGame.ViewModels
         #region Variables
 
         private string _message;
+        private BitmapImage _person;
 
         #endregion
 
@@ -21,8 +24,9 @@ namespace EscapeGame.ViewModels
 
         public StoryViewModel(Game game) : base(game)
         {
-            PMessage = "Hallo und herzlich willkommen zu Escape la familia."
-                //"Mein Name ist Robs und ich werde Sie durch den groben Spielablauf führen.";
+            PMessage = "Hallo und herzlich willkommen zu Escape la familia.";
+            //"Mein Name ist Robs und ich werde Sie durch den groben Spielablauf führen.";
+            PPerson = (BitmapImage) Application.Current.FindResource("imgRobsTalking1");
         }
 
         #endregion
@@ -34,7 +38,17 @@ namespace EscapeGame.ViewModels
             get { return _message; }
             set {
                 _message = value;
-                NotifyOnPropertyChanged("PMessage");
+                if(PropertyChanged != null) NotifyOnPropertyChanged("PMessage");
+            }
+        }
+
+        public BitmapImage PPerson
+        {
+            get { return _person; }
+            set
+            {
+                _person = value;
+                if(PropertyChanged != null) NotifyOnPropertyChanged("PPerson");
             }
         }
 
