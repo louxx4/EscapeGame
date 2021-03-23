@@ -15,21 +15,25 @@ namespace EscapeGame.Views.Animations
 
         protected override void Invoke(object parameter)
         {
-            Storyboard storyboard = new Storyboard();
-            storyboard.Children.Add(CreateAnimation(this.AssociatedObject, this.PSpeech));
-            storyboard.Begin();
+            if (PSpeech != null)
+            {
+                Storyboard storyboard = new Storyboard();
+                storyboard.Children.Add(CreateAnimation(this.AssociatedObject, this.PSpeech));
+                storyboard.Begin();
+            }
         }
 
-        private StringAnimationUsingKeyFrames CreateAnimation(UIElement element, string speech)
+        private static StringAnimationUsingKeyFrames CreateAnimation(UIElement element, string speech)
         {
             StringAnimationUsingKeyFrames animation = new StringAnimationUsingKeyFrames
             {
-                Duration = new Duration(new TimeSpan(0, 0, speech.Length / 10)),
+                Duration = new Duration(new TimeSpan(0, 0, 0, 0, speech.Length * 90)),
                 FillBehavior = FillBehavior.HoldEnd
             };
 
-            foreach (char c in speech)
-            { animation.KeyFrames.Add(new DiscreteStringKeyFrame(c.ToString(), KeyTime.Uniform)); }
+            for (int i = 0; i < speech.Length; i++)
+            { animation.KeyFrames.Add(new DiscreteStringKeyFrame(speech.
+                Substring(0, i + 1), KeyTime.Uniform)); }
 
             Storyboard.SetTargetProperty(animation, new PropertyPath("(TextBlock.Text)"));
             Storyboard.SetTarget(animation, element);
@@ -46,7 +50,7 @@ namespace EscapeGame.Views.Animations
             set { SetValue(SpeechProperty, value); }
         }
 
-        public static readonly DependencyProperty SpeechProperty =
+        private static readonly DependencyProperty SpeechProperty =
             DependencyProperty.Register("PSpeech", typeof(string), typeof(SpeechBubbleAnimation), null);
 
         #endregion

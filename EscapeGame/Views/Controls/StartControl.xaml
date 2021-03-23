@@ -6,7 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:EscapeGame.Views.Controls"
              xmlns:vm="clr-namespace:EscapeGame.ViewModels"
-             d:DataContext="{x:Type vm:StartViewModel}"
+             d:DataContext="{d:DesignInstance Type=vm:StartViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="{x:Null}">
     <Grid>

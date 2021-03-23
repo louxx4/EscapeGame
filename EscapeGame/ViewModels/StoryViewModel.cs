@@ -25,12 +25,12 @@ namespace EscapeGame.ViewModels
 
         public StoryViewModel(Game game) : base(game)
         {
-            PMessage = "Hallo und herzlich willkommen zu Escape la familia.";
             PPerson = (BitmapImage)Application.Current.FindResource("imgRobsTalking1");
+            PMessage = "Hallo und herzlich willkommen zu Escape la familia.";
         }
 
         private void ShowNextMessage()
-        {
+        { 
             PMessage = "Mein Name ist Robs und ich werde Sie durch den groben Spielablauf führen.";
         }
 

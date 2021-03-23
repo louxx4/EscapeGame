@@ -23,25 +23,22 @@
         <materialDesign:Card 
             Grid.Column="1" Margin="0 100 80 -80"
             UniformCornerRadius="80">
-            <TextBlock Name="tbSpeechBubble"
-                       TextWrapping="Wrap"
-                       HorizontalAlignment="Center" Margin="10 15"
+            <TextBlock x:Name="tbSpeechBubble"
+                       TextWrapping="WrapWithOverflow" TextAlignment="Center"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="Auto"
                        Foreground="WhiteSmoke"
-                       FontSize="25" FontFamily="Calibri">
+                       FontSize="20" FontFamily="Consolas">
                 <i:Interaction.Triggers>       
-                    <!--<i:PropertyChangedTrigger Binding="{Binding PMessage}">
-                        <animations:SpeechBubbleAnimation PSpeech="Hallo Welt"/>
-                    </i:PropertyChangedTrigger>-->
-                    <!--<i:EventTrigger EventName="MouseDown">
-                        <animations:SpeechBubbleAnimation PSpeech="Test"/>
-                    </i:EventTrigger>-->
+                    <i:PropertyChangedTrigger Binding="{Binding PMessage}">                         
+                        <animations:SpeechBubbleAnimation PSpeech="{Binding PMessage}"/>
+                    </i:PropertyChangedTrigger>
                 </i:Interaction.Triggers>
             </TextBlock>
         </materialDesign:Card>
         <Button
-            Grid.Column="1" Grid.Row="1" Margin="230 -75 0 0"
+            Grid.Column="1" Grid.Row="1" Margin="250 -70 0 0"
             Style="{StaticResource MaterialDesignIconButton}"
-            Foreground="WhiteSmoke" Height="30"
+            Foreground="WhiteSmoke" Height="20"
             Command="{Binding CmdNextMessage}">
             <materialDesign:PackIcon Kind="ArrowRightBoldOutline" Height="Auto" Width="Auto"/>
         </Button>
