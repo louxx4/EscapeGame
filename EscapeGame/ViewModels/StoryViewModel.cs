@@ -1,4 +1,5 @@
-﻿using EscapeGame.Models;
+﻿using CommandHelper;
+using EscapeGame.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,8 +26,12 @@ namespace EscapeGame.ViewModels
         public StoryViewModel(Game game) : base(game)
         {
             PMessage = "Hallo und herzlich willkommen zu Escape la familia.";
-            //"Mein Name ist Robs und ich werde Sie durch den groben Spielablauf führen.";
-            PPerson = (BitmapImage) Application.Current.FindResource("imgRobsTalking1");
+            PPerson = (BitmapImage)Application.Current.FindResource("imgRobsTalking1");
+        }
+
+        private void ShowNextMessage()
+        {
+            PMessage = "Mein Name ist Robs und ich werde Sie durch den groben Spielablauf führen.";
         }
 
         #endregion
@@ -36,9 +41,10 @@ namespace EscapeGame.ViewModels
         public string PMessage
         {
             get { return _message; }
-            set {
+            set
+            {
                 _message = value;
-                if(PropertyChanged != null) NotifyOnPropertyChanged("PMessage");
+                if (PropertyChanged != null) NotifyOnPropertyChanged("PMessage");
             }
         }
 
@@ -48,7 +54,7 @@ namespace EscapeGame.ViewModels
             set
             {
                 _person = value;
-                if(PropertyChanged != null) NotifyOnPropertyChanged("PPerson");
+                if (PropertyChanged != null) NotifyOnPropertyChanged("PPerson");
             }
         }
 
@@ -70,6 +76,13 @@ namespace EscapeGame.ViewModels
         #endregion
 
         #region Commands
+
+        public ICommand CmdNextMessage
+        {
+            get { 
+                return new RelayCommand(o => ShowNextMessage()); 
+            }
+        }
 
         #endregion
     }

@@ -21,7 +21,7 @@
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
         <Image 
-            Source="/Resources/Lurche.jpg" 
+            Source="/Resources/Images/Lurche.jpg" 
             Grid.ColumnSpan="3" Grid.RowSpan="3"
             Stretch="UniformToFill"/>
         <StackPanel Margin="10 5">
