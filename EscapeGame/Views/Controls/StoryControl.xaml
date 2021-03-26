@@ -6,6 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:EscapeGame.Views.Controls"
              xmlns:animations="clr-namespace:EscapeGame.Views.Animations"
+             xmlns:elements="clr-namespace:EscapeGame.Elements"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:vm="clr-namespace:EscapeGame.ViewModels"
              d:DataContext="{d:DesignInstance Type=vm:StoryViewModel}"
@@ -23,26 +24,33 @@
         <materialDesign:Card 
             Grid.Column="1" Margin="0 100 80 -80"
             UniformCornerRadius="80">
-            <TextBlock x:Name="tbSpeechBubble"
-                       TextWrapping="WrapWithOverflow" TextAlignment="Center"
-                       HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="Auto"
-                       Foreground="WhiteSmoke"
-                       FontSize="20" FontFamily="Consolas">
-                <i:Interaction.Triggers>       
-                    <i:PropertyChangedTrigger Binding="{Binding PMessage}">                         
-                        <animations:SpeechBubbleAnimation PSpeech="{Binding PMessage}"/>
+            <elements:SpeechBubble x:Name="tbSpeechBubble" DataContext="{Binding}"
+                TextWrapping="WrapWithOverflow" TextAlignment="Center"
+                HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="Auto"
+                Foreground="WhiteSmoke" Speech="{Binding PMessage}"
+                FontSize="19" FontFamily="Consolas">
+                <i:Interaction.Triggers>
+                    <i:PropertyChangedTrigger Binding="{Binding PMessage}">
+                        <animations:SpeechBubbleAnimation PSpeech="{Binding Speech, ElementName=tbSpeechBubble}"/>
                     </i:PropertyChangedTrigger>
                 </i:Interaction.Triggers>
-            </TextBlock>
+            </elements:SpeechBubble>
         </materialDesign:Card>
         <Button
-            Grid.Column="1" Grid.Row="1" Margin="250 -70 0 0"
+            Grid.Column="1" Grid.Row="1" Margin="230 -80 0 0"
             Style="{StaticResource MaterialDesignIconButton}"
             Foreground="WhiteSmoke" Height="20"
             Command="{Binding CmdNextMessage}">
             <materialDesign:PackIcon Kind="ArrowRightBoldOutline" Height="Auto" Width="Auto"/>
         </Button>
-        <Image Source="{Binding PPerson}"
-               Grid.Row="1" Grid.ColumnSpan="2" Margin="0 0 150 0"/>
+        <DockPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="0 0 150 0">
+            <Image Source="{Binding PPerson}">
+                <!--<i:Interaction.Triggers>
+                    <i:PropertyChangedTrigger Binding="{Binding PMessage}">
+                        
+                    </i:PropertyChangedTrigger>
+                </i:Interaction.Triggers>-->
+            </Image>
+        </DockPanel>
     </Grid>
 </UserControl>

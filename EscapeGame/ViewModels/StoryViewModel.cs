@@ -1,13 +1,9 @@
 ﻿using CommandHelper;
 using EscapeGame.Models;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace EscapeGame.ViewModels
@@ -30,7 +26,7 @@ namespace EscapeGame.ViewModels
         }
 
         private void ShowNextMessage()
-        { 
+        {
             PMessage = "Mein Name ist Robs und ich werde Sie durch den groben Spielablauf führen.";
         }
 
@@ -44,7 +40,7 @@ namespace EscapeGame.ViewModels
             set
             {
                 _message = value;
-                if (PropertyChanged != null) NotifyOnPropertyChanged("PMessage");
+                if(PropertyChanged != null) NotifyOnPropertyChanged("PMessage");
             }
         }
 

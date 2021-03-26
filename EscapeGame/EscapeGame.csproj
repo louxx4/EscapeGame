@@ -90,6 +90,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Elements\SpeechBubble.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\ModelEvents.cs" />
     <Compile Include="Models\Room.cs" />
@@ -100,9 +101,11 @@
     <Compile Include="ViewModels\StoryViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="Views\Animations\SpeechBubbleAnimation.cs" />
+    <Compile Include="Views\Animations\TalkingAnimation.cs" />
     <Compile Include="Views\Controls\StartControl.xaml.cs">
       <DependentUpon>StartControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ViewEvents.cs" />
     <Page Include="Resources\ImagesDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
