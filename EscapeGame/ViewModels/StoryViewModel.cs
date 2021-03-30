@@ -1,5 +1,7 @@
 ﻿using CommandHelper;
+using EscapeGame.Enums;
 using EscapeGame.Models;
+using EscapeGame.Views.Converters;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
@@ -13,7 +15,8 @@ namespace EscapeGame.ViewModels
         #region Variables
 
         private string _message;
-        private BitmapImage _person;
+        private Character _character1, _character2;
+        private CharacterAction _action1, _action2;
 
         #endregion
 
@@ -21,7 +24,8 @@ namespace EscapeGame.ViewModels
 
         public StoryViewModel(Game game) : base(game)
         {
-            PPerson = (BitmapImage)Application.Current.FindResource("imgRobsTalking1");
+            PCharacter1 = Character.Robs;
+            PAction1 = CharacterAction.Talking;
             PMessage = "Hallo und herzlich willkommen zu Escape la familia.";
         }
 
@@ -40,17 +44,65 @@ namespace EscapeGame.ViewModels
             set
             {
                 _message = value;
-                if(PropertyChanged != null) NotifyOnPropertyChanged("PMessage");
+                if (PropertyChanged != null)
+                {
+                    NotifyOnPropertyChanged("PMessage");
+                }
             }
         }
 
-        public BitmapImage PPerson
+        public BitmapImage PSource1
         {
-            get { return _person; }
+            get { return CharacterToImage.Convert(PCharacter1, PAction1); }
+        }
+
+        public BitmapImage PSource2
+        {
+            get { return CharacterToImage.Convert(PCharacter2, PAction2); }
+        }
+
+        public Duration PDuration
+        {
+            get { return MessageToDuration.Convert(PMessage); }
+        }
+
+        public Character PCharacter1
+        {
+            get { return _character1; }
             set
             {
-                _person = value;
-                if (PropertyChanged != null) NotifyOnPropertyChanged("PPerson");
+                _character1 = value;
+                if (PropertyChanged != null) NotifyOnPropertyChanged("PCharacter1");
+            }
+        }
+
+        public Character PCharacter2
+        {
+            get { return _character2; }
+            set
+            {
+                _character2 = value;
+                if (PropertyChanged != null) NotifyOnPropertyChanged("PCharacter2");
+            }
+        }
+
+        public CharacterAction PAction1
+        {
+            get { return _action1; }
+            set
+            {
+                _action1 = value;
+                if (PropertyChanged != null) NotifyOnPropertyChanged("PAction1");
+            }
+        }
+
+        public CharacterAction PAction2
+        {
+            get { return _action2; }
+            set
+            {
+                _action2 = value;
+                if (PropertyChanged != null) NotifyOnPropertyChanged("PAction2");
             }
         }
 

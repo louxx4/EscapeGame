@@ -6,7 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:EscapeGame.Views.Controls"
              xmlns:animations="clr-namespace:EscapeGame.Views.Animations"
-             xmlns:elements="clr-namespace:EscapeGame.Elements"
+             xmlns:elements="clr-namespace:EscapeGame.Views.Elements"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:vm="clr-namespace:EscapeGame.ViewModels"
              d:DataContext="{d:DesignInstance Type=vm:StoryViewModel}"
@@ -31,26 +31,53 @@
                 FontSize="19" FontFamily="Consolas">
                 <i:Interaction.Triggers>
                     <i:PropertyChangedTrigger Binding="{Binding PMessage}">
-                        <animations:SpeechBubbleAnimation PSpeech="{Binding Speech, ElementName=tbSpeechBubble}"/>
+                        <animations:SpeechBubbleAnimation 
+                            Speech="{Binding Speech, ElementName=tbSpeechBubble}"/>
                     </i:PropertyChangedTrigger>
                 </i:Interaction.Triggers>
             </elements:SpeechBubble>
         </materialDesign:Card>
         <Button
-            Grid.Column="1" Grid.Row="1" Margin="230 -80 0 0"
+            Grid.Column="1" Grid.Row="2" 
+            HorizontalAlignment="Right" Margin="0 -80 50 0"
             Style="{StaticResource MaterialDesignIconButton}"
             Foreground="WhiteSmoke" Height="20"
             Command="{Binding CmdNextMessage}">
             <materialDesign:PackIcon Kind="ArrowRightBoldOutline" Height="Auto" Width="Auto"/>
         </Button>
-        <DockPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="0 0 150 0">
-            <Image Source="{Binding PPerson}">
-                <!--<i:Interaction.Triggers>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <elements:Person x:Name="person2" Grid.Column="0"
+                             Source="{Binding PSource2}"
+                             Character="{Binding PCharacter2}"
+                             CharacterAction="{Binding PAction2}"
+                             Duration="{Binding PDuration}">
+                <i:Interaction.Triggers>
                     <i:PropertyChangedTrigger Binding="{Binding PMessage}">
-                        
+                        <animations:TalkingAnimation 
+                            Character="{Binding Character, ElementName=person2}"
+                            CharacterAction="{Binding CharacterAction, ElementName=person2}"
+                            Duration="{Binding Duration, ElementName=person2}"/>
                     </i:PropertyChangedTrigger>
-                </i:Interaction.Triggers>-->
-            </Image>
-        </DockPanel>
+                </i:Interaction.Triggers>
+            </elements:Person>
+            <elements:Person x:Name="person1" Grid.Column="1"
+                             Source="{Binding PSource1}"
+                             Character="{Binding PCharacter1}"
+                             CharacterAction="{Binding PAction1}"
+                             Duration="{Binding PDuration}">
+                <i:Interaction.Triggers>
+                    <i:PropertyChangedTrigger Binding="{Binding PMessage}">
+                        <animations:TalkingAnimation 
+                            Character="{Binding Character, ElementName=person1}"
+                            CharacterAction="{Binding CharacterAction, ElementName=person1}"
+                            Duration="{Binding Duration, ElementName=person1}"/>
+                    </i:PropertyChangedTrigger>
+                </i:Interaction.Triggers>
+            </elements:Person>
+        </Grid>
     </Grid>
 </UserControl>

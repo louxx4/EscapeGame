@@ -7,14 +7,13 @@ using System.Windows;
 using System.Windows.Controls;
 using EscapeGame.Views;
 
-namespace EscapeGame.Elements
+namespace EscapeGame.Views.Elements
 {
     public class SpeechBubble : TextBlock
     {
 
         public static readonly DependencyProperty SpeechProperty =
-            DependencyProperty.Register("Speech", typeof(string), typeof(SpeechBubble),
-                new PropertyMetadata());
+            DependencyProperty.Register("Speech", typeof(string), typeof(SpeechBubble));
 
         public string Speech
         {

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Animation;
+using EscapeGame.Views.Converters;
 using Microsoft.Xaml.Behaviors;
 
 namespace EscapeGame.Views.Animations
@@ -15,10 +16,10 @@ namespace EscapeGame.Views.Animations
 
         protected override void Invoke(object parameter)
         {
-            if (PSpeech != null)
+            if (Speech != null)
             {
                 Storyboard storyboard = new Storyboard();
-                storyboard.Children.Add(CreateAnimation(this.AssociatedObject, this.PSpeech));
+                storyboard.Children.Add(CreateAnimation(this.AssociatedObject, this.Speech));
                 storyboard.Begin();
             }
         }
@@ -27,7 +28,7 @@ namespace EscapeGame.Views.Animations
         {
             StringAnimationUsingKeyFrames animation = new StringAnimationUsingKeyFrames
             {
-                Duration = new Duration(new TimeSpan(0, 0, 0, 0, speech.Length * 90)),
+                Duration = MessageToDuration.Convert(speech),
                 FillBehavior = FillBehavior.HoldEnd
             };
 
@@ -42,16 +43,21 @@ namespace EscapeGame.Views.Animations
 
         #endregion
 
+        #region DependencyProperties
+
+        private static readonly DependencyProperty SpeechProperty =
+            DependencyProperty.Register("Speech", typeof(string), typeof(SpeechBubbleAnimation));
+
+
+        #endregion
+
         #region Properties
 
-        public string PSpeech
+        public string Speech
         {
             get { return (string)GetValue(SpeechProperty); }
             set { SetValue(SpeechProperty, value); }
         }
-
-        private static readonly DependencyProperty SpeechProperty =
-            DependencyProperty.Register("PSpeech", typeof(string), typeof(SpeechBubbleAnimation), null);
 
         #endregion
     }
