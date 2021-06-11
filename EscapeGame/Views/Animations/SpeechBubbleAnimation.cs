@@ -12,6 +12,7 @@ namespace EscapeGame.Views.Animations
 {
     public class SpeechBubbleAnimation : TriggerAction<UIElement>
     {
+
         #region Main
 
         protected override void Invoke(object parameter)
@@ -20,8 +21,14 @@ namespace EscapeGame.Views.Animations
             {
                 Storyboard storyboard = new Storyboard();
                 storyboard.Children.Add(CreateAnimation(this.AssociatedObject, this.Speech));
+                storyboard.Completed += Storyboard_Completed;
                 storyboard.Begin();
             }
+        }
+
+        private void Storyboard_Completed(object sender, EventArgs e)
+        {
+            Completed = true;
         }
 
         private static StringAnimationUsingKeyFrames CreateAnimation(UIElement element, string speech)
@@ -33,8 +40,10 @@ namespace EscapeGame.Views.Animations
             };
 
             for (int i = 0; i < speech.Length; i++)
-            { animation.KeyFrames.Add(new DiscreteStringKeyFrame(speech.
-                Substring(0, i + 1), KeyTime.Uniform)); }
+            {
+                animation.KeyFrames.Add(new DiscreteStringKeyFrame(speech.
+                  Substring(0, i + 1), KeyTime.Uniform));
+            }
 
             Storyboard.SetTargetProperty(animation, new PropertyPath("(TextBlock.Text)"));
             Storyboard.SetTarget(animation, element);
@@ -48,6 +57,9 @@ namespace EscapeGame.Views.Animations
         private static readonly DependencyProperty SpeechProperty =
             DependencyProperty.Register("Speech", typeof(string), typeof(SpeechBubbleAnimation));
 
+        private static readonly DependencyProperty CompletedProperty =
+            DependencyProperty.Register("Completed", typeof(bool), typeof(SpeechBubbleAnimation));
+
 
         #endregion
 
@@ -57,6 +69,12 @@ namespace EscapeGame.Views.Animations
         {
             get { return (string)GetValue(SpeechProperty); }
             set { SetValue(SpeechProperty, value); }
+        }
+
+        public bool Completed
+        {
+            get { return (bool)GetValue(CompletedProperty); }
+            set { SetValue(CompletedProperty, value); }
         }
 
         #endregion

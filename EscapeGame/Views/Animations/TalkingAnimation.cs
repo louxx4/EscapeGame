@@ -2,10 +2,6 @@
 using EscapeGame.Views.Converters;
 using Microsoft.Xaml.Behaviors;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
@@ -18,30 +14,39 @@ namespace EscapeGame.Views.Animations
 
         protected override void Invoke(object parameter)
         {
-            if (CharacterAction == CharacterAction.Talking && Duration != null)
+            if (Character != Character.None &&
+                CharacterAction == CharacterAction.Talking &&
+                Duration != null)
             {
-                BitmapImage img1 = CharacterToImage.Convert(Character, CharacterAction, true);
-                BitmapImage img2 = CharacterToImage.Convert(Character, CharacterAction, false);
+                BitmapImage img1 = CharacterToImage.Convert(Character, CharacterAction, 1);
+                BitmapImage img2 = CharacterToImage.Convert(Character, CharacterAction, 2);
+                BitmapImage img3 = CharacterToImage.Convert(Character, CharacterAction, 3);
                 Storyboard storyboard = new Storyboard();
-                storyboard.Children.Add(CreateAnimation(this.AssociatedObject, img1, img2, this.Duration));
+                storyboard.Children.Add(CreateAnimation(this.AssociatedObject, img1, img2, img3, this.Duration));
                 storyboard.Begin();
             }
         }
 
         private static ObjectAnimationUsingKeyFrames CreateAnimation(UIElement element,
-            BitmapImage img1, BitmapImage img2, Duration duration)
+            BitmapImage img1, BitmapImage img2, BitmapImage img3, Duration duration)
         {
             ObjectAnimationUsingKeyFrames animation = new ObjectAnimationUsingKeyFrames { Duration = duration };
-            BitmapImage _image = img1;
 
-            for (int i = 0; i < duration.TimeSpan.TotalSeconds * 4; i++)
+            if (duration.HasTimeSpan)
             {
-                animation.KeyFrames.Add(new DiscreteObjectKeyFrame(_image, KeyTime.Uniform));
-                _image = (_image.Equals(img1) ? img2 : img1);
+                BitmapImage _image = img1;
+                double iterations = Math.Floor(duration.TimeSpan.TotalSeconds * 4);
+                for (int i = 0; i < iterations; i++)
+                {
+                    animation.KeyFrames.Add(new DiscreteObjectKeyFrame(_image, KeyTime.Uniform));
+                    if (i == iterations - 2) _image = img3;
+                    else _image = _image.Equals(img1) ? img2 :
+                         _image.Equals(img2) ? img3 : _image.Equals(img3) ? img1 : img2;
+                }
             }
 
-            Storyboard.SetTargetProperty(animation, new PropertyPath("(Image.Source)"));
             Storyboard.SetTarget(animation, element);
+            Storyboard.SetTargetProperty(animation, new PropertyPath("(Image.Source)"));
             return animation;
         }
 

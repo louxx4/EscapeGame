@@ -1,4 +1,5 @@
 ﻿using EscapeGame.Enums;
+using EscapeGame.Models.StoryComponents;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace EscapeGame.Models
     {
         public event GameStartedEventHandler GameStarted;
         private RoomID _currentRoom;
+        private int _componentIndex;
 
         public Game()
         {
@@ -20,6 +22,16 @@ namespace EscapeGame.Models
         public void Start()
         {
             GameStarted?.Invoke(_currentRoom);
+        }
+
+        public StoryComponent getNextComponent()
+        {
+            return null;
+        }
+
+        private StoryComponent getComponent()
+        {
+            return new StoryMessage()
         }
 
     }

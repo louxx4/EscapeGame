@@ -5,6 +5,7 @@ using System.Windows.Input;
 using EscapeGame.Enums;
 using CommandHelper;
 using EscapeGame.Models;
+using EscapeGame.Models.Rooms;
 
 namespace EscapeGame.ViewModels
 {
@@ -26,7 +27,8 @@ namespace EscapeGame.ViewModels
         {
             _roomList = new List<Room> {
                 new StartRoom(new StartViewModel(_game)),
-                new StoryRoom(new StoryViewModel(_game))
+                new StoryRoom(new StoryViewModel(_game)),
+                new KitchenRoom(new KitchenViewModel(_game))
             };
             _game.GameStarted += _game_GameStarted;
         }

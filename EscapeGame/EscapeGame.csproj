@@ -90,6 +90,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Rooms\KitchenRoom.cs" />
+    <Compile Include="Models\Story Components\StoryMessage.cs" />
+    <Compile Include="Models\StoryComponent.cs" />
+    <Compile Include="ViewModels\KitchenViewModel.cs" />
+    <Compile Include="Views\Controls\KitchenControl.xaml.cs">
+      <DependentUpon>KitchenControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Converters\CharacterToImage.cs" />
     <Compile Include="Views\Converters\MessageToDuration.cs" />
     <Compile Include="Views\Elements\Person.cs" />
@@ -98,8 +105,8 @@
     <Compile Include="Models\ModelEvents.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Enums\Enums.cs" />
-    <Compile Include="Models\StartRoom.cs" />
-    <Compile Include="Models\StoryRoom.cs" />
+    <Compile Include="Models\Rooms\StartRoom.cs" />
+    <Compile Include="Models\Rooms\StoryRoom.cs" />
     <Compile Include="ViewModels\StartViewModel.cs" />
     <Compile Include="ViewModels\StoryViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
@@ -110,6 +117,10 @@
     </Compile>
     <Compile Include="Views\ViewEvents.cs" />
     <Page Include="Resources\ImagesDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\KitchenControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -194,6 +205,7 @@
   <ItemGroup>
     <Resource Include="Resources\People\robs_talking1.png" />
     <Resource Include="Resources\People\robs_talking2.png" />
+    <Resource Include="Resources\People\robs_talking3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets')" />

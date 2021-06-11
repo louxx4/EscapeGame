@@ -11,8 +11,10 @@ namespace EscapeGame.Views.Converters
 {
     public static class CharacterToImage
     {
-        public static BitmapImage Convert(Character character, CharacterAction action, bool first = true)
+        public static BitmapImage Convert(Character character, CharacterAction action, int index = 1)
         {
+            if (character == Character.None) return null;
+                     
             string key = "img";
 
             switch (character)
@@ -27,12 +29,12 @@ namespace EscapeGame.Views.Converters
             switch (action)
             {
                 case CharacterAction.Talking: 
-                    key += "Talking" + (first ? "1" : "2"); break;
+                    key += "Talking" + index.ToString(); break;
             }
 
             BitmapImage resource = (BitmapImage)Application.Current.FindResource(key);
 
-            return resource ?? new BitmapImage();
+            return resource ?? null;
         }
 
     }

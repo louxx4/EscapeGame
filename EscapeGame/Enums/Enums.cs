@@ -2,16 +2,17 @@
 {
     public enum RoomID
     {
-        Start, Story
+        Start, Story, Kitchen
     }
 
     public enum Character
     {
-        Robs  = 0,
-        Mutti = 1,
-        Tabs  = 2,
-        Vati  = 3,
-        Lule  = 4
+        None  = 0,
+        Robs  = 1,
+        Mutti = 2,
+        Tabs  = 3,
+        Vati  = 4,
+        Lule  = 5
     }
 
     public enum CharacterAction

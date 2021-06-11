@@ -1,6 +1,7 @@
 ﻿using CommandHelper;
 using EscapeGame.Enums;
 using EscapeGame.Models;
+using EscapeGame.Views.Animations;
 using EscapeGame.Views.Converters;
 using System.ComponentModel;
 using System.Windows;
@@ -15,8 +16,10 @@ namespace EscapeGame.ViewModels
         #region Variables
 
         private string _message;
+        private bool _arrowEnabled;
         private Character _character1, _character2;
         private CharacterAction _action1, _action2;
+        private Visibility _visibility1, _visibility2;
 
         #endregion
 
@@ -26,6 +29,7 @@ namespace EscapeGame.ViewModels
         {
             PCharacter1 = Character.Robs;
             PAction1 = CharacterAction.Talking;
+            PVisibility1 = Visibility.Visible;
             PMessage = "Hallo und herzlich willkommen zu Escape la familia.";
         }
 
@@ -44,10 +48,42 @@ namespace EscapeGame.ViewModels
             set
             {
                 _message = value;
+                PArrowEnabled = false;
                 if (PropertyChanged != null)
                 {
+                    NotifyOnPropertyChanged("PDuration");
                     NotifyOnPropertyChanged("PMessage");
                 }
+            }
+        }
+
+        public Visibility PVisibility1
+        {
+            get { return _visibility1; }
+            set
+            {
+                _visibility1 = value;
+                if (PropertyChanged != null) { NotifyOnPropertyChanged("PVisibility1"); }
+            }
+        }
+
+        public Visibility PVisibility2
+        {
+            get { return _visibility2; }
+            set
+            {
+                _visibility2 = value;
+                if (PropertyChanged != null) { NotifyOnPropertyChanged("PVisibility2"); }
+            }
+        }
+
+        public bool PArrowEnabled
+        {
+            get { return _arrowEnabled; }
+            set
+            {
+                _arrowEnabled = value;
+                if (PropertyChanged != null) { NotifyOnPropertyChanged("PArrowEnabled"); }
             }
         }
 
@@ -127,8 +163,9 @@ namespace EscapeGame.ViewModels
 
         public ICommand CmdNextMessage
         {
-            get { 
-                return new RelayCommand(o => ShowNextMessage()); 
+            get
+            {
+                return new RelayCommand(o => ShowNextMessage());
             }
         }
 

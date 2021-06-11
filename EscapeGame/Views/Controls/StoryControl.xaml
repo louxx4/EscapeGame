@@ -21,43 +21,46 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <materialDesign:Card 
-            Grid.Column="1" Margin="0 100 80 -80"
-            UniformCornerRadius="80">
-            <elements:SpeechBubble x:Name="tbSpeechBubble" DataContext="{Binding}"
-                TextWrapping="WrapWithOverflow" TextAlignment="Center"
-                HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="Auto"
-                Foreground="WhiteSmoke" Speech="{Binding PMessage}"
-                FontSize="19" FontFamily="Consolas">
-                <i:Interaction.Triggers>
-                    <i:PropertyChangedTrigger Binding="{Binding PMessage}">
-                        <animations:SpeechBubbleAnimation 
-                            Speech="{Binding Speech, ElementName=tbSpeechBubble}"/>
-                    </i:PropertyChangedTrigger>
-                </i:Interaction.Triggers>
-            </elements:SpeechBubble>
-        </materialDesign:Card>
-        <Button
-            Grid.Column="1" Grid.Row="2" 
-            HorizontalAlignment="Right" Margin="0 -80 50 0"
-            Style="{StaticResource MaterialDesignIconButton}"
-            Foreground="WhiteSmoke" Height="20"
-            Command="{Binding CmdNextMessage}">
-            <materialDesign:PackIcon Kind="ArrowRightBoldOutline" Height="Auto" Width="Auto"/>
-        </Button>
+        <DockPanel Grid.Column="1" Margin="0 100 80 -80">
+            <materialDesign:Card UniformCornerRadius="80" Width="280">
+                <elements:SpeechBubble x:Name="tbSpeechBubble" DataContext="{Binding}"
+                                       TextWrapping="WrapWithOverflow" TextAlignment="Center"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="Auto"
+                                       Foreground="WhiteSmoke" Speech="{Binding PMessage}"
+                                       FontSize="19" FontFamily="Consolas">
+                    <i:Interaction.Triggers>
+                        <i:PropertyChangedTrigger Binding="{Binding PMessage}">
+                            <animations:SpeechBubbleAnimation 
+                            Speech="{Binding Speech, ElementName=tbSpeechBubble}"
+                            Completed="{Binding PArrowEnabled, Mode=OneWayToSource}"/>
+                        </i:PropertyChangedTrigger>
+                    </i:Interaction.Triggers>
+                </elements:SpeechBubble>
+            </materialDesign:Card>
+            <Button
+                VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                Style="{StaticResource MaterialDesignIconButton}"
+                Foreground="WhiteSmoke" Height="20"
+                IsEnabled="{Binding PArrowEnabled, Mode=OneWay}"
+                Command="{Binding CmdNextMessage}">
+                <materialDesign:PackIcon Kind="ArrowRightBoldOutline" Height="Auto" Width="Auto"/>
+            </Button>
+        </DockPanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <elements:Person x:Name="person2" Grid.Column="0"
+                             Visibility="{Binding PVisibility2}"
                              Source="{Binding PSource2}"
                              Character="{Binding PCharacter2}"
                              CharacterAction="{Binding PAction2}"
                              Duration="{Binding PDuration}">
                 <i:Interaction.Triggers>
                     <i:PropertyChangedTrigger Binding="{Binding PMessage}">
-                        <animations:TalkingAnimation 
+                        <animations:TalkingAnimation
+                            Storyboard.TargetName="person2"
                             Character="{Binding Character, ElementName=person2}"
                             CharacterAction="{Binding CharacterAction, ElementName=person2}"
                             Duration="{Binding Duration, ElementName=person2}"/>
@@ -65,13 +68,15 @@
                 </i:Interaction.Triggers>
             </elements:Person>
             <elements:Person x:Name="person1" Grid.Column="1"
+                             Visibility="{Binding PVisibility1}"
                              Source="{Binding PSource1}"
                              Character="{Binding PCharacter1}"
                              CharacterAction="{Binding PAction1}"
                              Duration="{Binding PDuration}">
                 <i:Interaction.Triggers>
                     <i:PropertyChangedTrigger Binding="{Binding PMessage}">
-                        <animations:TalkingAnimation 
+                        <animations:TalkingAnimation
+                            Storyboard.TargetName="person1"
                             Character="{Binding Character, ElementName=person1}"
                             CharacterAction="{Binding CharacterAction, ElementName=person1}"
                             Duration="{Binding Duration, ElementName=person1}"/>

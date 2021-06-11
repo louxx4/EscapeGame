@@ -30,6 +30,9 @@
         <DataTemplate x:Key="Story">
             <ctrls:StoryControl DataContext="{Binding PRoom.PVm}"/>
         </DataTemplate>
+        <DataTemplate x:Key="Kitchen">
+            <ctrls:StoryControl DataContext="{Binding PRoom.PVm}"/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -40,7 +43,7 @@
             <RowDefinition Height="10"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="1" Background="#FF2F081D" Opacity="0.4"/>
+        <Label Grid.Row="1" Background="Black" Opacity="0.8"/>
         <ContentControl Content="{Binding}">
             <ContentControl.Style>
                 <Style TargetType="ContentControl">
@@ -50,6 +53,9 @@
                         </DataTrigger>
                         <DataTrigger Binding="{Binding PRoomID}" Value="1">
                             <Setter Property="ContentControl.ContentTemplate" Value="{StaticResource Story}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding PRoomID}" Value="2">
+                            <Setter Property="ContentControl.ContentTemplate" Value="{StaticResource Kitchen}"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>

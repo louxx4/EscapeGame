@@ -1,7 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
+    <!--608x800-->
     <BitmapImage x:Key="imgRobsTalking1" UriSource="pack://application:,,,/Resources/People/robs_talking1.png"/>
     <BitmapImage x:Key="imgRobsTalking2" UriSource="pack://application:,,,/Resources/People/robs_talking2.png"/>
+    <BitmapImage x:Key="imgRobsTalking3" UriSource="pack://application:,,,/Resources/People/robs_talking3.png"/>
 
 </ResourceDictionary>
