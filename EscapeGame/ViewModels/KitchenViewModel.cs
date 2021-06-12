@@ -18,10 +18,9 @@ namespace EscapeGame.ViewModels
 
         #region Main
 
-        public KitchenViewModel(Game game) : base(game)
-        {
+        public KitchenViewModel(Game game) : base(game) {}
 
-        }
+        public override void SetComponent(GameComponent c) { }
 
         #endregion
 

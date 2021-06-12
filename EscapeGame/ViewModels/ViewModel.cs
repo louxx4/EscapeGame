@@ -9,11 +9,18 @@ namespace EscapeGame.ViewModels
 {
     public abstract class ViewModel
     {
-        public readonly Game _game;
+        private readonly Game _game;
 
         public ViewModel(Game game)
         {
             this._game = game;
         }
+
+        public Game PGame
+        {
+            get { return _game; }
+        }
+
+        public abstract void SetComponent(GameComponent c);
     }
 }

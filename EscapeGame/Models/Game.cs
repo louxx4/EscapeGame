@@ -1,5 +1,5 @@
 ﻿using EscapeGame.Enums;
-using EscapeGame.Models.StoryComponents;
+using EscapeGame.Models.GameComponents;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,6 @@ namespace EscapeGame.Models
     {
         public event GameStartedEventHandler GameStarted;
         private RoomID _currentRoom;
-        private int _componentIndex;
 
         public Game()
         {
@@ -21,17 +20,14 @@ namespace EscapeGame.Models
 
         public void Start()
         {
-            GameStarted?.Invoke(_currentRoom);
+            GameStarted?.Invoke(GetNextComponent());
         }
 
-        public StoryComponent getNextComponent()
+        public GameComponent GetNextComponent()
         {
-            return null;
-        }
-
-        private StoryComponent getComponent()
-        {
-            return new StoryMessage()
+            return new StoryMessage(RoomID.Story, Character.Robs, CharacterAction.Talking,
+                new string[] {"Hallo und herzlich willkommen zu Escape la familia.",
+                "Mein Name ist Robs und ich werde Sie durch den groben Spielablauf führen."});
         }
 
     }

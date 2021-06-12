@@ -1,6 +1,7 @@
 ﻿using CommandHelper;
 using EscapeGame.Enums;
 using EscapeGame.Models;
+using EscapeGame.Models.GameComponents;
 using EscapeGame.Views.Animations;
 using EscapeGame.Views.Converters;
 using System.ComponentModel;
@@ -21,21 +22,39 @@ namespace EscapeGame.ViewModels
         private CharacterAction _action1, _action2;
         private Visibility _visibility1, _visibility2;
 
+        private int _iterator = 0;
+        private string[] _sequences;
+        
         #endregion
-
+        
         #region Main
 
-        public StoryViewModel(Game game) : base(game)
+        public StoryViewModel(Game game) : base(game) { }
+
+        public override void SetComponent(GameComponent c)
         {
-            PCharacter1 = Character.Robs;
-            PAction1 = CharacterAction.Talking;
-            PVisibility1 = Visibility.Visible;
-            PMessage = "Hallo und herzlich willkommen zu Escape la familia.";
+            if (c is StoryMessage)
+            {
+                StoryMessage story = c as StoryMessage;
+                PCharacter1 = story.Character1;
+                PAction1 = story.CharacterAction1;
+                _sequences = story.Message;
+                if (story.HasCharacter2)
+                {
+                    PCharacter2 = story.Character2;
+                    PAction2 = story.CharacterAction2;
+                }
+                ShowNextMessage();
+            }
         }
 
         private void ShowNextMessage()
         {
-            PMessage = "Mein Name ist Robs und ich werde Sie durch den groben Spielablauf führen.";
+            if (_sequences.Length > _iterator)
+            {
+                PMessage = _sequences[_iterator];
+                _iterator++;
+            }
         }
 
         #endregion

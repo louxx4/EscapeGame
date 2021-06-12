@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 
 namespace EscapeGame.Models
 {
-    public delegate void GameStartedEventHandler(RoomID currentRoom);
+    public delegate void GameStartedEventHandler(GameComponent startComponent);
 }

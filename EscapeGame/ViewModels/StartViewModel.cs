@@ -22,8 +22,10 @@ namespace EscapeGame.ViewModels
 
         private void StartGame()
         {
-            _game.Start();
+            PGame.Start();
         }
+
+        public override void SetComponent(GameComponent c) { }
 
         #endregion
 

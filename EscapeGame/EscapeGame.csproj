@@ -91,8 +91,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\Rooms\KitchenRoom.cs" />
-    <Compile Include="Models\Story Components\StoryMessage.cs" />
-    <Compile Include="Models\StoryComponent.cs" />
+    <Compile Include="Models\GameComponents\StoryMessage.cs" />
+    <Compile Include="Models\GameComponent.cs" />
     <Compile Include="ViewModels\KitchenViewModel.cs" />
     <Compile Include="Views\Controls\KitchenControl.xaml.cs">
       <DependentUpon>KitchenControl.xaml</DependentUpon>

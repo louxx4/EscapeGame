@@ -16,7 +16,7 @@ namespace EscapeGame.ViewModels
         private bool _isMenuOpen, _isWindowMaximized, _isHelpShown;
         private WindowState _windowState;
         private RoomID _roomID = RoomID.Start;
-        private List<Room> _roomList;
+        private Dictionary<RoomID, Room> _roomList;
         private readonly Game _game = new Game();
 
         #endregion
@@ -25,17 +25,18 @@ namespace EscapeGame.ViewModels
 
         public MainViewModel()
         {
-            _roomList = new List<Room> {
-                new StartRoom(new StartViewModel(_game)),
-                new StoryRoom(new StoryViewModel(_game)),
-                new KitchenRoom(new KitchenViewModel(_game))
+            _roomList = new Dictionary<RoomID, Room>() {
+                { RoomID.Start, new StartRoom(new StartViewModel(_game)) },
+                { RoomID.Story, new StoryRoom(new StoryViewModel(_game)) },
+                { RoomID.Kitchen, new KitchenRoom(new KitchenViewModel(_game)) }
             };
             _game.GameStarted += _game_GameStarted;
         }
 
-        private void _game_GameStarted(RoomID currentRoom)
+        private void _game_GameStarted(GameComponent first)
         {
-            PRoomID = currentRoom;
+            PRoomID = first.PRoomID;
+            _roomList[first.PRoomID].PVm.SetComponent(first);
         }
 
         private void CloseApp()
@@ -66,7 +67,7 @@ namespace EscapeGame.ViewModels
         {
             get
             {
-                if (_roomList.Count > 0) return _roomList[(int)PRoomID];
+                if (_roomList.Count > 0) return _roomList[PRoomID];
                 else return null;
             }
         }

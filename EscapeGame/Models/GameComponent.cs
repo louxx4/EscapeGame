@@ -7,14 +7,19 @@ using System.Threading.Tasks;
 
 namespace EscapeGame.Models
 {
-    public abstract class StoryComponent
+    public abstract class GameComponent
     {
 
-        private RoomID _room;
+        private readonly RoomID _room;
 
-        public StoryComponent(RoomID room)
+        public GameComponent(RoomID room)
         {
             _room = room;
+        }
+
+        public RoomID PRoomID
+        {
+            get { return _room;  }
         }
 
     }
