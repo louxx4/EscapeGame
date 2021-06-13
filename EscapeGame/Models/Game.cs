@@ -11,12 +11,8 @@ namespace EscapeGame.Models
     public class Game
     {
         public event GameStartedEventHandler GameStarted;
-        private RoomID _currentRoom;
 
-        public Game()
-        {
-            _currentRoom = RoomID.Story;
-        }
+        public Game() {}
 
         public void Start()
         {

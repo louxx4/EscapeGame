@@ -31,7 +31,7 @@
             <ctrls:StoryControl DataContext="{Binding PRoom.PVm}"/>
         </DataTemplate>
         <DataTemplate x:Key="Kitchen">
-            <ctrls:StoryControl DataContext="{Binding PRoom.PVm}"/>
+            <ctrls:KitchenControl DataContext="{Binding PRoom.PVm}"/>
         </DataTemplate>
     </Window.Resources>
     <Grid>

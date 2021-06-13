@@ -12,6 +12,6 @@
              mc:Ignorable="d" Background="#FF1C1C1C"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Image Source="/Resources\Rooms\Kitchen.jpg" Stretch="Fill"/>
     </Grid>
 </UserControl>
