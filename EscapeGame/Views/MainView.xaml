@@ -66,7 +66,21 @@
             <materialDesign:DrawerHost.LeftDrawerContent>
                 <DockPanel 
                     MinWidth="200"
-                    Background="{StaticResource MaterialDesignColumnHeader}">
+                    Background="Black" Opacity="0.9">
+                    <ToggleButton Command="{Binding CmdChangeRoom}" CommandParameter="2">
+                        <Grid>
+                            <materialDesign:PackIcon Kind="FridgeOutline"/>
+                        </Grid>
+                        <ToggleButton.Style>
+                            <Style TargetType="ToggleButton" BasedOn="{StaticResource MaterialDesignIconForegroundButton}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding PRoomID}" Value="2">
+                                        <Setter Property="ToggleButton.IsChecked" Value="{Binding PRoom.PVisible}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ToggleButton.Style>
+                    </ToggleButton>
                 </DockPanel>
             </materialDesign:DrawerHost.LeftDrawerContent>
         </materialDesign:DrawerHost>

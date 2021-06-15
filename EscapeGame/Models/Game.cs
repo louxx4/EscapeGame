@@ -12,7 +12,17 @@ namespace EscapeGame.Models
     {
         public event GameStartedEventHandler GameStarted;
 
-        public Game() {}
+        #region Variables
+
+        private readonly GameComponentSequence _sequence;
+        
+        #endregion
+
+        #region Main
+
+        public Game() {
+            _sequence = new GameComponentSequence();
+        }
 
         public void Start()
         {
@@ -21,10 +31,9 @@ namespace EscapeGame.Models
 
         public GameComponent GetNextComponent()
         {
-            return new StoryMessage(RoomID.Story, Character.Robs, CharacterAction.Talking,
-                new string[] {"Hallo und herzlich willkommen zu Escape la familia.",
-                "Mein Name ist Robs und ich werde Sie durch den groben Spielablauf führen."});
+            return _sequence.GetNextComponent();
         }
 
+        #endregion
     }
 }

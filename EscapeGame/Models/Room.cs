@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using EscapeGame.ViewModels;
 
 namespace EscapeGame.Models
@@ -12,7 +13,7 @@ namespace EscapeGame.Models
         #region Variables
 
         private readonly ViewModel _vm;
-        private bool _discovered;
+        private bool _discovered, _visible;
 
         #endregion
 
@@ -20,7 +21,7 @@ namespace EscapeGame.Models
 
         public Room(ViewModel vm)
         {
-            this._vm = vm;
+            _vm = vm;
         }
 
 
@@ -31,16 +32,23 @@ namespace EscapeGame.Models
         public ViewModel PVm
         {
             get { return _vm; }
-            set { }
         }
 
         public bool PDiscovered
         {
             get { return _discovered; }
-            set
-            {
-                _discovered = true;
-            }
+            set { _discovered = value; }
+        }
+
+        public bool PVisible
+        {
+            get { return _visible; }
+            set { _visible = value; }
+        }
+
+        public Visibility PDiscoveredVisibility
+        {
+            get { return _discovered ? Visibility.Visible : Visibility.Hidden; }
         }
 
         #endregion

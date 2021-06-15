@@ -58,7 +58,8 @@
     <StartupObject>EscapeGame.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommandHelper">
+    <Reference Include="CommandHelper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Documents\Privat\Projekte\Programmieren\CommandHelper.dll</HintPath>
     </Reference>
     <Reference Include="MaterialDesignColors, Version=1.2.7.1979, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
@@ -90,10 +91,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\GameComponentSequence.cs" />
+    <Compile Include="Models\GameComponents\OpenRiddle.cs" />
     <Compile Include="Models\Rooms\KitchenRoom.cs" />
     <Compile Include="Models\GameComponents\StoryMessage.cs" />
     <Compile Include="Models\GameComponent.cs" />
-    <Compile Include="ViewModels\KitchenViewModel.cs" />
+    <Compile Include="ViewModels\Room VMs\KitchenViewModel.cs" />
+    <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="Views\Controls\KitchenControl.xaml.cs">
       <DependentUpon>KitchenControl.xaml</DependentUpon>
     </Compile>
@@ -107,8 +111,8 @@
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Models\Rooms\StartRoom.cs" />
     <Compile Include="Models\Rooms\StoryRoom.cs" />
-    <Compile Include="ViewModels\StartViewModel.cs" />
-    <Compile Include="ViewModels\StoryViewModel.cs" />
+    <Compile Include="ViewModels\Room VMs\StartViewModel.cs" />
+    <Compile Include="ViewModels\Room VMs\StoryViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="Views\Animations\SpeechBubbleAnimation.cs" />
     <Compile Include="Views\Animations\TalkingAnimation.cs" />
