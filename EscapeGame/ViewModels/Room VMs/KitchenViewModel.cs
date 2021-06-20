@@ -9,35 +9,24 @@ using System.Threading.Tasks;
 
 namespace EscapeGame.ViewModels
 {
-    public class KitchenViewModel : ViewModel, INotifyPropertyChanged
+    public class KitchenViewModel : RoomViewModel, INotifyPropertyChanged
     {
         #region Variables
-
 
         #endregion
 
         #region Main
 
-        public KitchenViewModel(Game game) : base(game) {}
+        public KitchenViewModel(Game game) : base(game) { }
 
-        public override void SetComponent(GameComponent c) { }
-
-        #endregion
-
-        #region Events
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
-        #region EventHandler
-
-        private void NotifyOnPropertyChanged(string propName)
+        public override void SetComponent(GameComponent c)
         {
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propName));
+            PRoom.Enter();
         }
 
         #endregion
+
+
 
     }
 }

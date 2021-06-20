@@ -11,6 +11,7 @@ namespace EscapeGame.Models
     public class Game
     {
         public event GameStartedEventHandler GameStarted;
+        public event ComponentFinishedEventHandler ComponentFinished;
 
         #region Variables
 
@@ -27,6 +28,11 @@ namespace EscapeGame.Models
         public void Start()
         {
             GameStarted?.Invoke(GetNextComponent());
+        }
+
+        public void IsComponentFinished()
+        {
+            ComponentFinished?.Invoke(GetNextComponent());
         }
 
         public GameComponent GetNextComponent()

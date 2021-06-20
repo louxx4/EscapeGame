@@ -12,7 +12,7 @@ namespace EscapeGame.Models
     {
         #region Variables
 
-        private int _currentIndex = 0;
+        private int _currentIndex = -1;
         private readonly List<GameComponent> _sequenceDefinition = new List<GameComponent> {
             new StoryMessage(RoomID.Story, Character.Robs, CharacterAction.Talking,
                 new string[] {"Hallo und herzlich willkommen zu Escape la familia.",

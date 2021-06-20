@@ -12,43 +12,40 @@ namespace EscapeGame.Models
     {
         #region Variables
 
-        private readonly ViewModel _vm;
-        private bool _discovered, _visible;
+        private readonly RoomViewModel _vm;
+        private bool _discovered = false;
 
         #endregion
 
         #region Main
 
-        public Room(ViewModel vm)
+        public Room(RoomViewModel vm)
         {
             _vm = vm;
+            _vm.PRoom = this;
         }
 
+        public void Enter()
+        {
+            Discover();
+        }
+        
+        private void Discover()
+        {
+            if (!_discovered)
+            {
+                _discovered = true;
+                PVm.PDiscovered = true;
+            }
+        }
 
         #endregion
 
         #region Properties
 
-        public ViewModel PVm
+        public RoomViewModel PVm
         {
             get { return _vm; }
-        }
-
-        public bool PDiscovered
-        {
-            get { return _discovered; }
-            set { _discovered = value; }
-        }
-
-        public bool PVisible
-        {
-            get { return _visible; }
-            set { _visible = value; }
-        }
-
-        public Visibility PDiscoveredVisibility
-        {
-            get { return _discovered ? Visibility.Visible : Visibility.Hidden; }
         }
 
         #endregion

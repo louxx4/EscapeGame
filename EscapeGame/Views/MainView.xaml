@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:EscapeGame"
         xmlns:models="clr-namespace:EscapeGame.Models"
         xmlns:views="clr-namespace:EscapeGame.Views"
@@ -61,26 +62,41 @@
                 </Style>
             </ContentControl.Style>
         </ContentControl>
-        <materialDesign:DrawerHost Grid.RowSpan="3" HorizontalAlignment="Left" MinWidth="150" 
-                                   IsLeftDrawerOpen="{Binding PIsMenuOpen, Mode=TwoWay}">
+        <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding PIsMenuOpen, Mode=TwoWay}">
+            <materialDesign:DrawerHost.Style>
+                <Style TargetType="materialDesign:DrawerHost"
+                       BasedOn="{StaticResource {x:Type materialDesign:DrawerHost}}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding PIsMenuOpen}" Value="True">
+                            <Setter Property="OverlayBackground" Value="Black"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </materialDesign:DrawerHost.Style>
             <materialDesign:DrawerHost.LeftDrawerContent>
-                <DockPanel 
-                    MinWidth="200"
-                    Background="Black" Opacity="0.9">
-                    <ToggleButton Command="{Binding CmdChangeRoom}" CommandParameter="2">
-                        <Grid>
-                            <materialDesign:PackIcon Kind="FridgeOutline"/>
-                        </Grid>
-                        <ToggleButton.Style>
-                            <Style TargetType="ToggleButton" BasedOn="{StaticResource MaterialDesignIconForegroundButton}">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding PRoomID}" Value="2">
-                                        <Setter Property="ToggleButton.IsChecked" Value="{Binding PRoom.PVisible}"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </ToggleButton.Style>
-                    </ToggleButton>
+                <DockPanel Background="#FF581037" Opacity="0.8" MinWidth="100">
+                    <Expander HorizontalAlignment="Stretch" Background="{x:Null}"
+                              Header="Räume" IsExpanded="True">
+                        <Button Height="50" Width="50" ToolTip="Küche"
+                                IsEnabled="{Binding PRoom.PVm.PDiscovered}"
+                                Command="{Binding CmdChangeRoom}">
+                            <Button.CommandParameter>
+                                <sys:Int16>2</sys:Int16>
+                            </Button.CommandParameter>
+                            <Grid>
+                                <materialDesign:PackIcon Kind="FridgeOutline" Height="30" Width="30"/>
+                            </Grid>
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignIconForegroundButton}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding PRoomID}" Value="2">
+                                            <Setter Property="Button.IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </Expander>
                 </DockPanel>
             </materialDesign:DrawerHost.LeftDrawerContent>
         </materialDesign:DrawerHost>
@@ -97,7 +113,7 @@
                                 Style="{StaticResource MaterialDesignHamburgerToggleButton}"
                                 IsChecked="{Binding PIsMenuOpen}"
                                 AutomationProperties.Name="HamburgerToggleButton"
-                                ToolTip="Rucksack"
+                                ToolTip="Menü"
                                 Width="Auto" Height="Auto"/>
                     <ToggleButton
                                 Margin="5 0 0 0"

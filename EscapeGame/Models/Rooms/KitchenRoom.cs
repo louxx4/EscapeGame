@@ -15,7 +15,7 @@ namespace EscapeGame.Models.Rooms
 
         #region Main
 
-        public KitchenRoom(ViewModel vm) : base(vm)
+        public KitchenRoom(RoomViewModel vm) : base(vm)
         {
 
         }

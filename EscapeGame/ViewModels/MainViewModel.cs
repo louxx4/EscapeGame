@@ -30,14 +30,19 @@ namespace EscapeGame.ViewModels
                 { RoomID.Story, new StoryRoom(new StoryViewModel(_game)) },
                 { RoomID.Kitchen, new KitchenRoom(new KitchenViewModel(_game)) }
             };
-            _game.GameStarted += GameStarted;
+            Register4Events();
         }
 
-        private void GameStarted(GameComponent first)
+        private void Register4Events()
         {
-            PRoomID = first.PRoomID;
-            _roomList[first.PRoomID].PVm.SetComponent(first);
-            //PRoomID = RoomID.Kitchen;
+            _game.GameStarted += SetComponent;
+            _game.ComponentFinished += SetComponent;
+        }
+        
+        private void SetComponent(GameComponent gc)
+        {
+            PRoomID = gc.PRoomID;
+            _roomList[gc.PRoomID].PVm.SetComponent(gc);
         }
 
         private void CloseApp()
@@ -50,9 +55,9 @@ namespace EscapeGame.ViewModels
             PWindowState = WindowState.Minimized;
         }
 
-        private void ChangeRoom(object oRoomID)
+        private void ChangeRoom(int roomID)
         {
-            PRoomID = 0;
+            PRoomID = (RoomID)roomID;
         }
 
         #endregion

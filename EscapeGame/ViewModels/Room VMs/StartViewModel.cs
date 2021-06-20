@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace EscapeGame.ViewModels
 {
-    public class StartViewModel : ViewModel, INotifyPropertyChanged
+    public class StartViewModel : RoomViewModel, INotifyPropertyChanged
     {
         #region Variables
 
@@ -30,21 +30,6 @@ namespace EscapeGame.ViewModels
         #endregion
 
         #region Properties
-
-        #endregion
-
-        #region Events
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
-        #region EventHandler
-
-        private void NotifyOnPropertyChanged(string propName)
-        {
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propName));
-        }
 
         #endregion
 

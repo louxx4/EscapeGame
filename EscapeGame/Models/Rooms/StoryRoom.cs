@@ -16,7 +16,7 @@ namespace EscapeGame.Models
 
         #region Main
 
-        public StoryRoom(ViewModel vm) : base(vm) {
+        public StoryRoom(RoomViewModel vm) : base(vm) {
 
         }
 

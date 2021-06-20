@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 
 namespace EscapeGame.ViewModels
 {
-    public class StoryViewModel : ViewModel, INotifyPropertyChanged
+    public class StoryViewModel : RoomViewModel, INotifyPropertyChanged
     {
         #region Variables
 
@@ -24,17 +24,22 @@ namespace EscapeGame.ViewModels
 
         private int _iterator = 0;
         private string[] _sequences;
-        
+
         #endregion
-        
+
         #region Main
 
-        public StoryViewModel(Game game) : base(game) { }
+        public StoryViewModel(Game game) : base(game)
+        {
+
+        }
 
         public override void SetComponent(GameComponent c)
         {
+            PRoom.Enter();
             if (c is StoryMessage)
             {
+                _iterator = 0; //Reset
                 StoryMessage story = c as StoryMessage;
                 PCharacter1 = story.Character1;
                 PAction1 = story.CharacterAction1;
@@ -55,6 +60,7 @@ namespace EscapeGame.ViewModels
                 PMessage = _sequences[_iterator];
                 _iterator++;
             }
+            else PGame.IsComponentFinished();
         }
 
         #endregion
@@ -68,11 +74,8 @@ namespace EscapeGame.ViewModels
             {
                 _message = value;
                 PArrowEnabled = false;
-                if (PropertyChanged != null)
-                {
-                    NotifyOnPropertyChanged("PDuration");
-                    NotifyOnPropertyChanged("PMessage");
-                }
+                NotifyOnPropertyChanged("PDuration");
+                NotifyOnPropertyChanged("PMessage");
             }
         }
 
@@ -82,7 +85,7 @@ namespace EscapeGame.ViewModels
             set
             {
                 _visibility1 = value;
-                if (PropertyChanged != null) { NotifyOnPropertyChanged("PVisibility1"); }
+                NotifyOnPropertyChanged("PVisibility1");
             }
         }
 
@@ -92,7 +95,7 @@ namespace EscapeGame.ViewModels
             set
             {
                 _visibility2 = value;
-                if (PropertyChanged != null) { NotifyOnPropertyChanged("PVisibility2"); }
+                NotifyOnPropertyChanged("PVisibility2");
             }
         }
 
@@ -102,7 +105,7 @@ namespace EscapeGame.ViewModels
             set
             {
                 _arrowEnabled = value;
-                if (PropertyChanged != null) { NotifyOnPropertyChanged("PArrowEnabled"); }
+                NotifyOnPropertyChanged("PArrowEnabled");
             }
         }
 
@@ -127,7 +130,7 @@ namespace EscapeGame.ViewModels
             set
             {
                 _character1 = value;
-                if (PropertyChanged != null) NotifyOnPropertyChanged("PCharacter1");
+                NotifyOnPropertyChanged("PCharacter1");
             }
         }
 
@@ -137,7 +140,7 @@ namespace EscapeGame.ViewModels
             set
             {
                 _character2 = value;
-                if (PropertyChanged != null) NotifyOnPropertyChanged("PCharacter2");
+                NotifyOnPropertyChanged("PCharacter2");
             }
         }
 
@@ -147,7 +150,7 @@ namespace EscapeGame.ViewModels
             set
             {
                 _action1 = value;
-                if (PropertyChanged != null) NotifyOnPropertyChanged("PAction1");
+                NotifyOnPropertyChanged("PAction1");
             }
         }
 
@@ -157,23 +160,8 @@ namespace EscapeGame.ViewModels
             set
             {
                 _action2 = value;
-                if (PropertyChanged != null) NotifyOnPropertyChanged("PAction2");
+                NotifyOnPropertyChanged("PAction2");
             }
-        }
-
-        #endregion
-
-        #region Events
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
-        #region EventHandler
-
-        private void NotifyOnPropertyChanged(string propName)
-        {
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 
         #endregion
@@ -182,10 +170,7 @@ namespace EscapeGame.ViewModels
 
         public ICommand CmdNextMessage
         {
-            get
-            {
-                return new RelayCommand(o => ShowNextMessage());
-            }
+            get { return new RelayCommand(o => ShowNextMessage()); }
         }
 
         #endregion

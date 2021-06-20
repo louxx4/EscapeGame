@@ -8,4 +8,6 @@ using System.Threading.Tasks;
 namespace EscapeGame.Models
 {
     public delegate void GameStartedEventHandler(GameComponent startComponent);
+    public delegate void ComponentFinishedEventHandler(GameComponent nextComponent);
+
 }
