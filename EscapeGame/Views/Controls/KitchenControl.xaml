@@ -10,8 +10,48 @@
              xmlns:vm="clr-namespace:EscapeGame.ViewModels"
              d:DataContext="{d:DesignInstance Type=vm:KitchenViewModel}"
              mc:Ignorable="d" Background="#FF1C1C1C"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="410" d:DesignWidth="800">
     <Grid>
-        <Image Source="/Resources\Rooms\Kitchen.jpg" Stretch="Fill"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="95"/>
+            <ColumnDefinition Width="112"/>
+            <ColumnDefinition Width="79"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="120"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="175"/>
+            <RowDefinition Height="34"/>
+            <RowDefinition Height="34"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Image Grid.ColumnSpan="6" Grid.RowSpan="5" Stretch="Fill"
+            Source="/Resources\Rooms\Kitchen.jpg"/>
+        <Button Width="Auto" Height="Auto"
+                Style="{StaticResource MaterialDesignFlatButton}"
+                ToolTip="Ofen"/>
+        <Button Grid.Column="2" Grid.Row="1" Grid.RowSpan="3"
+                Width="Auto" Height="Auto"
+                Style="{StaticResource MaterialDesignFlatButton}"
+                ToolTip="Spülmaschine"/>
+        <Button Grid.Column="3" Grid.Row="1"
+                Width="Auto" Height="Auto"
+                Style="{StaticResource MaterialDesignFlatButton}"
+                ToolTip="Besteckschublade"/>
+        <Button Grid.Column="3" Grid.Row="2"
+                Width="Auto" Height="Auto"
+                Style="{StaticResource MaterialDesignFlatButton}"
+                ToolTip="Schublade"/>
+        <Button Grid.Column="4"
+                Margin="0 90 85 0"
+                Width="80" Height="50"
+                Style="{StaticResource MaterialDesignIconButton}"
+                ToolTip="Obstschale"/>
+        <Button Grid.Column="5" Grid.RowSpan="5"
+                Width="Auto" Height="Auto"
+                Style="{StaticResource MaterialDesignFlatButton}"
+                ToolTip="Kühlschrank"/>
     </Grid>
 </UserControl>

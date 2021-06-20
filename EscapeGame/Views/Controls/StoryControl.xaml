@@ -21,7 +21,7 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <DockPanel Grid.Column="1" Margin="0 100 80 -80">
+        <DockPanel Grid.Column="1" Margin="0 100 70 -80">
             <materialDesign:Card UniformCornerRadius="80" Width="280">
                 <elements:SpeechBubble x:Name="tbSpeechBubble" DataContext="{Binding}"
                                        TextWrapping="WrapWithOverflow" TextAlignment="Center"

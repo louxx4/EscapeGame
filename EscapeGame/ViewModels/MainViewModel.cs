@@ -41,8 +41,9 @@ namespace EscapeGame.ViewModels
         
         private void SetComponent(GameComponent gc)
         {
-            PRoomID = gc.PRoomID;
-            _roomList[gc.PRoomID].PVm.SetComponent(gc);
+            //PRoomID = gc.PRoomID;
+            //_roomList[gc.PRoomID].PVm.SetComponent(gc);
+            PRoomID = RoomID.Kitchen;
         }
 
         private void CloseApp()
