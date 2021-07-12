@@ -5,7 +5,7 @@ using System.Windows.Input;
 using EscapeGame.Enums;
 using CommandHelper;
 using EscapeGame.Models;
-using EscapeGame.Models.Rooms;
+using EscapeGame.GameSource;
 
 namespace EscapeGame.ViewModels
 {
@@ -16,7 +16,7 @@ namespace EscapeGame.ViewModels
         private bool _isMenuOpen, _isWindowMaximized, _isHelpShown;
         private WindowState _windowState;
         private RoomID _roomID = RoomID.Start;
-        private Dictionary<RoomID, Room> _roomList;
+        private readonly RoomDeclaration _roomDeclaration;
         private readonly Game _game = new Game();
 
         #endregion
@@ -25,11 +25,7 @@ namespace EscapeGame.ViewModels
 
         public MainViewModel()
         {
-            _roomList = new Dictionary<RoomID, Room>() {
-                { RoomID.Start, new StartRoom(new StartViewModel(_game)) },
-                { RoomID.Story, new StoryRoom(new StoryViewModel(_game)) },
-                { RoomID.Kitchen, new KitchenRoom(new KitchenViewModel(_game)) }
-            };
+            _roomDeclaration = new RoomDeclaration(_game);
             Register4Events();
         }
 
@@ -38,11 +34,11 @@ namespace EscapeGame.ViewModels
             _game.GameStarted += SetComponent;
             _game.ComponentFinished += SetComponent;
         }
-        
+
         private void SetComponent(GameComponent gc)
         {
             //PRoomID = gc.PRoomID;
-            //_roomList[gc.PRoomID].PVm.SetComponent(gc);
+            //_roomDeclaration.GetVM(gc.PRoomID).SetComponent(gc);
             PRoomID = RoomID.Kitchen;
         }
 
@@ -77,11 +73,12 @@ namespace EscapeGame.ViewModels
 
         public Room PRoom
         {
-            get
-            {
-                if (_roomList.Count > 0) return _roomList[PRoomID];
-                else return null;
-            }
+            get { return _roomDeclaration.GetRoom(PRoomID); }
+        }
+
+        public RoomViewModel PVM
+        {
+            get { return _roomDeclaration.GetVM(PRoomID); }
         }
 
         public bool PIsMenuOpen

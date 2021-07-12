@@ -1,4 +1,5 @@
 ﻿using EscapeGame.Enums;
+using EscapeGame.GameSource;
 using EscapeGame.Models.GameComponents;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace EscapeGame.Models
         #region Variables
 
         private readonly GameComponentSequence _sequence;
+        private readonly RoomObjectDeclaration _objectDeclaration;
         
         #endregion
 
@@ -23,6 +25,7 @@ namespace EscapeGame.Models
 
         public Game() {
             _sequence = new GameComponentSequence();
+            _objectDeclaration = new RoomObjectDeclaration();
         }
 
         public void Start()
@@ -34,6 +37,11 @@ namespace EscapeGame.Models
         {
             ComponentFinished?.Invoke(GetNextComponent());
         }
+
+        public List<RoomObject> GetObjects(RoomID id)
+        {
+            return _objectDeclaration.Get(id);
+        } 
 
         public GameComponent GetNextComponent()
         {

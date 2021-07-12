@@ -18,14 +18,17 @@ namespace EscapeGame.ViewModels
 
         #region Main
 
-        public StartViewModel(Game game) : base(game) { }
+        public StartViewModel(Game game, Room room) : base(game, room) { }
 
         private void StartGame()
         {
             PGame.Start();
         }
 
-        public override void SetComponent(GameComponent c) { }
+        public override void SetComponent(GameComponent c)
+        {
+            Enter();
+        }
 
         #endregion
 
@@ -37,11 +40,9 @@ namespace EscapeGame.ViewModels
 
         public ICommand CmdStart
         {
-            get
-            {
-                return new RelayCommand(o => StartGame());
-            }
+            get { return new RelayCommand(o => StartGame()); }
         }
+
         #endregion
     }
 }

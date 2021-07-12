@@ -29,14 +29,11 @@ namespace EscapeGame.ViewModels
 
         #region Main
 
-        public StoryViewModel(Game game) : base(game)
-        {
-
-        }
+        public StoryViewModel(Game game, Room room) : base(game, room) { }
 
         public override void SetComponent(GameComponent c)
         {
-            PRoom.Enter();
+            Enter();
             if (c is StoryMessage)
             {
                 _iterator = 0; //Reset

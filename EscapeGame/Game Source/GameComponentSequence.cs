@@ -5,8 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EscapeGame.Models;
 
-namespace EscapeGame.Models
+namespace EscapeGame.GameSource
 {
     public class GameComponentSequence
     {

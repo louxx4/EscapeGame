@@ -91,18 +91,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\GameComponentSequence.cs" />
+    <Compile Include="Game Source\GameComponentSequence.cs" />
+    <Compile Include="Game Source\RoomDeclaration.cs" />
+    <Compile Include="Game Source\RoomObjectDeclaration.cs" />
     <Compile Include="Models\Game components\OpenRiddle.cs" />
+    <Compile Include="Models\RoomObject.cs" />
     <Compile Include="Models\Rooms\KitchenRoom.cs" />
     <Compile Include="Models\Game components\StoryMessage.cs" />
     <Compile Include="Models\GameComponent.cs" />
+    <Compile Include="ViewModels\PopUpViewModel.cs" />
     <Compile Include="ViewModels\Room VMs\KitchenViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="Views\Controls\KitchenControl.xaml.cs">
       <DependentUpon>KitchenControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\PopUpControl.xaml.cs">
+      <DependentUpon>PopUpControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Converters\CharacterToImage.cs" />
     <Compile Include="Views\Converters\MessageToDuration.cs" />
+    <Compile Include="Views\Converters\ObjectToImage.cs" />
     <Compile Include="Views\Elements\Person.cs" />
     <Compile Include="Views\Elements\SpeechBubble.cs" />
     <Compile Include="Models\Game.cs" />
@@ -125,6 +133,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\KitchenControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\PopUpControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

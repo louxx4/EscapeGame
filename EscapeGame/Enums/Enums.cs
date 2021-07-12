@@ -2,17 +2,25 @@
 {
     public enum RoomID
     {
-        Start, Story, Kitchen
+        PopUp = -1,
+        Start = 0,
+        Story = 1,
+        Kitchen = 2
+    }
+
+    public enum ObjectID
+    {
+        Fridge, Oven, Fruitbowl, CutleryDrawer, Drawer, Dishwasher
     }
 
     public enum Character
     {
-        None  = 0,
-        Robs  = 1,
+        None = 0,
+        Robs = 1,
         Mutti = 2,
-        Tabs  = 3,
-        Vati  = 4,
-        Lule  = 5
+        Tabs = 3,
+        Vati = 4,
+        Lule = 5
     }
 
     public enum CharacterAction

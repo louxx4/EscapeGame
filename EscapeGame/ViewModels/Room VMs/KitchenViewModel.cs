@@ -1,5 +1,4 @@
-﻿using CommandHelper;
-using EscapeGame.Models;
+﻿using EscapeGame.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,22 +10,16 @@ namespace EscapeGame.ViewModels
 {
     public class KitchenViewModel : RoomViewModel, INotifyPropertyChanged
     {
-        #region Variables
-
-        #endregion
-
         #region Main
 
-        public KitchenViewModel(Game game) : base(game) { }
+        public KitchenViewModel(Game game, Room room) : base(game, room) { }
 
         public override void SetComponent(GameComponent c)
         {
-            PRoom.Enter();
+            Enter();
         }
 
         #endregion
-
-
 
     }
 }

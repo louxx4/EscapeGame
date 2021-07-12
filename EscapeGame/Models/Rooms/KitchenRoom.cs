@@ -1,4 +1,5 @@
-﻿using EscapeGame.ViewModels;
+﻿using EscapeGame.Enums;
+using EscapeGame.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +10,6 @@ namespace EscapeGame.Models.Rooms
 {
     class KitchenRoom : Room
     {
-        #region Variables
-
-        #endregion
-
-        #region Main
-
-        public KitchenRoom(RoomViewModel vm) : base(vm)
-        {
-
-        }
-
-        #endregion
+        public KitchenRoom(RoomID id) : base(id) { }
     }
 }

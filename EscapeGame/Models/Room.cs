@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using EscapeGame.Enums;
 using EscapeGame.ViewModels;
 
 namespace EscapeGame.Models
@@ -12,40 +13,35 @@ namespace EscapeGame.Models
     {
         #region Variables
 
-        private readonly RoomViewModel _vm;
-        private bool _discovered = false;
+        private bool _discovered;
+        private readonly RoomID _id;
 
         #endregion
 
-        #region Main
-
-        public Room(RoomViewModel vm)
+        public Room(RoomID id)
         {
-            _vm = vm;
-            _vm.PRoom = this;
+            _id = id;
         }
 
         public void Enter()
         {
-            Discover();
-        }
-        
-        private void Discover()
-        {
-            if (!_discovered)
-            {
-                _discovered = true;
-                PVm.PDiscovered = true;
-            }
+            PDiscovered = true;
         }
 
-        #endregion
+        public RoomID GetID()
+        {
+           return _id;
+        }
 
         #region Properties
 
-        public RoomViewModel PVm
+        public bool PDiscovered
         {
-            get { return _vm; }
+            get { return _discovered; }
+            set
+            {
+                _discovered = value;
+            }
         }
 
         #endregion

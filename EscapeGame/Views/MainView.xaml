@@ -26,13 +26,13 @@
     </Window.DataContext>
     <Window.Resources>
         <DataTemplate x:Key="Start">
-            <ctrls:StartControl DataContext="{Binding PRoom.PVm}"/>
+            <ctrls:StartControl DataContext="{Binding PVM}"/>
         </DataTemplate>
         <DataTemplate x:Key="Story">
-            <ctrls:StoryControl DataContext="{Binding PRoom.PVm}"/>
+            <ctrls:StoryControl DataContext="{Binding PVM}"/>
         </DataTemplate>
         <DataTemplate x:Key="Kitchen">
-            <ctrls:KitchenControl DataContext="{Binding PRoom.PVm}"/>
+            <ctrls:KitchenControl DataContext="{Binding PVM}"/>
         </DataTemplate>
     </Window.Resources>
     <Grid>
@@ -77,15 +77,18 @@
                 <DockPanel Background="#FF581037" Opacity="0.8" MinWidth="100">
                     <Expander HorizontalAlignment="Stretch" Background="{x:Null}"
                               Header="Räume" IsExpanded="True">
-                        <Button Height="50" Width="50" ToolTip="Küche"
-                                IsEnabled="{Binding PRoom.PVm.PDiscovered}"
+                        <Button Height="Auto" Width="Auto" ToolTip="Küche"
+                                IsEnabled="{Binding PRoom.PDiscovered}"
                                 Command="{Binding CmdChangeRoom}">
                             <Button.CommandParameter>
                                 <sys:Int16>2</sys:Int16>
                             </Button.CommandParameter>
-                            <Grid>
-                                <materialDesign:PackIcon Kind="FridgeOutline" Height="30" Width="30"/>
-                            </Grid>
+                            <DockPanel>
+                                <materialDesign:PackIcon Kind="FridgeOutline" 
+                                                         Height="30" Width="30"
+                                                         DockPanel.Dock="Top" HorizontalAlignment="Center"/>
+                                <Label Content="Küche" HorizontalAlignment="Center"/>
+                            </DockPanel>
                             <Button.Style>
                                 <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignIconForegroundButton}">
                                     <Style.Triggers>
