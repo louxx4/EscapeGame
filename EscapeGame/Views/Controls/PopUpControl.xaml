@@ -9,7 +9,7 @@
              Background="Black"
              d:DataContext="{d:DesignInstance Type=viewmodels:PopUpViewModel}"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="350">
+             d:DesignHeight="400" d:DesignWidth="500">
     <Grid>
         <materialDesign:DialogHost DialogTheme="Inherit">
             <materialDesign:DialogHost.DialogContent>
@@ -19,14 +19,14 @@
             </materialDesign:DialogHost.DialogContent>
             <Border BorderThickness="1"
                     BorderBrush="{DynamicResource PrimaryHueMidBrush}"
-                    MinHeight="256"
+                    MinHeight="250"
                     ClipToBounds="True">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <Image Source="{Binding PImage}"/>
+                    <ContentControl Content=""/>
                     <materialDesign:ColorZone Mode="PrimaryDark" Grid.Row="1"
                                               Effect="{DynamicResource MaterialDesignShadowDepth5}">
                         <TextBlock Margin="12" FontSize="16" Text="{Binding PName}"/>
