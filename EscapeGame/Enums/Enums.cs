@@ -10,7 +10,7 @@
 
     public enum ObjectID
     {
-        Fridge, Oven, Fruitbowl, CutleryDrawer, Drawer, Dishwasher
+        Fridge, Oven, CutleryDrawer, Drawer, Dishwasher
     }
 
     public enum Character

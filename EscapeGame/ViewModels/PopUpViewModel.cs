@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
@@ -14,6 +15,7 @@ namespace EscapeGame.ViewModels
     {
         private readonly BitmapImage _image;
         private readonly string _name;
+        private readonly ContentControl _objectControl;
 
         #region Main
 
@@ -23,6 +25,12 @@ namespace EscapeGame.ViewModels
         {
             _name = name;
             _image = image;
+        }
+
+        public PopUpViewModel(string name, ContentControl objectControl)
+        {
+            _name = name;
+            _objectControl = objectControl;
         }
 
         #endregion
@@ -37,6 +45,11 @@ namespace EscapeGame.ViewModels
         public BitmapImage PImage
         {
             get { return _image; }
+        }
+        
+        public ContentControl PObjectControl
+        {
+            get { return _objectControl;  }
         }
 
         #endregion

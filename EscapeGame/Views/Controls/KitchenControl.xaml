@@ -15,7 +15,7 @@
                                    IsOpen="{Binding PIsOpen}"
                                    CloseOnClickAway="True">
             <materialDesign:DialogHost.DialogContent>
-                <ContentControl Width="450" Height="400">
+                <ContentControl Width="600" Height="400">
                     <ctrls:PopUpControl DataContext="{Binding PPopUpVM}"/>
                 </ContentControl>
             </materialDesign:DialogHost.DialogContent>
@@ -98,46 +98,10 @@
                         <sys:Int32>3</sys:Int32>
                     </Button.CommandParameter>
                 </Button>
-                <Button Grid.Column="4"
-                        Margin="20 90 100 0"
-                        Width="80" Height="50"
-                        Command="{Binding CmdObjectClicked}"
-                        ToolTip="{Binding PObjects[4].PTooltip}">
-                    <Button.CommandParameter>
-                        <sys:Int32>4</sys:Int32>
-                    </Button.CommandParameter>
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Grid>
-                                <Path x:Name="path" Fill="White"
-                                      Stretch="Fill">
-                                    <Path.Data>
-                                        <PathGeometry>
-                                            <PathFigure StartPoint="0 0">
-                                                <LineSegment Point="200 0"/>
-                                                <LineSegment Point="180 140"/>
-                                                <LineSegment Point="20 140"/>
-                                                <LineSegment Point="0 0"/>
-                                            </PathFigure>
-                                        </PathGeometry>
-                                    </Path.Data>
-                                </Path>
-                            </Grid>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="path" Property="Opacity" Value="0.2"/>
-                                </Trigger>
-                                <Trigger Property="IsMouseOver" Value="False">
-                                    <Setter TargetName="path" Property="Opacity" Value="0"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
                 <Button Grid.Column="5" Grid.RowSpan="5"
                         Width="Auto" Height="Auto"                        
                         Command="{Binding CmdObjectClicked}"
-                        ToolTip="{Binding PObjects[5].PTooltip}">
+                        ToolTip="{Binding PObjects[4].PTooltip}">
                     <Button.CommandParameter>
                         <sys:Int32>5</sys:Int32>
                     </Button.CommandParameter>

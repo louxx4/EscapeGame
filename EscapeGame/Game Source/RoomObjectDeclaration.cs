@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EscapeGame.Models;
 using EscapeGame.Enums;
+using EscapeGame.Views.Controls.Objects;
 
 namespace EscapeGame.GameSource
 {
@@ -14,11 +15,10 @@ namespace EscapeGame.GameSource
             new Dictionary<RoomID, List<RoomObject>>()
             {
                 { RoomID.Kitchen, new List<RoomObject>() {
-                    new RoomObject(ObjectID.Oven, "Ofen"),
+                    new RoomObject(ObjectID.Oven, "Ofen", new Oven()),
                     new RoomObject(ObjectID.Dishwasher, "Spülmaschine"),
                     new RoomObject(ObjectID.CutleryDrawer, "Besteckschublade"),
                     new RoomObject(ObjectID.Drawer, "Schublade"),
-                    new RoomObject(ObjectID.Fruitbowl, "Obstschale"),
                     new RoomObject(ObjectID.Fridge, "Kühlschrank")
                 }}
             };

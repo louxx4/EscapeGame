@@ -1,12 +1,8 @@
 ﻿using CommandHelper;
 using EscapeGame.Enums;
 using EscapeGame.Models;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace EscapeGame.ViewModels
@@ -16,7 +12,7 @@ namespace EscapeGame.ViewModels
         private readonly Game _game;
         private Room _room;
         private bool _discovered, _isOpen;
-        private List<RoomObject> _objects;
+        private readonly List<RoomObject> _objects;
         private PopUpViewModel _popUpVM = new PopUpViewModel();
 
         #region Main
@@ -47,7 +43,8 @@ namespace EscapeGame.ViewModels
                 RoomObject obj = PObjects[objectIndex];
                 if (obj != null)
                 {
-                    PPopUpVM = new PopUpViewModel(obj.PTooltip, obj.PImage);
+                    //TODO Unterscheidung Image / Control
+                    PPopUpVM = new PopUpViewModel(obj.PTooltip, obj.PControl); //obj.PImage);
                     PIsOpen = true;
                 }
             }

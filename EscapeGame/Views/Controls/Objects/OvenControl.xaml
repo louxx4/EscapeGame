@@ -1,11 +1,14 @@
-﻿<UserControl x:Class="EscapeGame.Views.Controls.Objects.Oven"
+﻿<UserControl x:Class="EscapeGame.Views.Controls.Objects.OvenControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:EscapeGame.Views.Controls.Objects"
-             mc:Ignorable="d" 
-             d:DesignHeight="355" d:DesignWidth="500">
+             mc:Ignorable="d"
+             xmlns:vm="clr-namespace:EscapeGame.ViewModels"
+             d:DataContext="{d:DesignInstance Type=vm:OvenViewModel}"
+             d:DesignHeight="355" d:DesignWidth="600">
     <UserControl.Resources>
         <Style TargetType="Canvas" x:Key="CanvasHorizontal">
             <Setter Property="Background">
@@ -35,7 +38,7 @@
             <Setter Property="Fill">
                 <Setter.Value>
                     <LinearGradientBrush>
-                        <GradientStop Color="#FF5D3B19" Offset="0.2"/>
+                        <GradientStop Color="#FF5D3B19" Offset="0.1"/>
                         <GradientStop Color="#FFFFF40B" Offset="1.2"/>
                     </LinearGradientBrush>
                 </Setter.Value>
@@ -82,47 +85,48 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid Background="WhiteSmoke">
+    <Grid Background="{DynamicResource PrimaryHueDarkBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60"/>
             <ColumnDefinition/>
             <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
         <Rectangle Fill="Black"
                    Grid.ColumnSpan="3" Margin="10 10"
                    RadiusX="10" RadiusY="10"/>
         <StackPanel>
-            <Rectangle Fill="WhiteSmoke"    
+            <Rectangle Fill="{DynamicResource PrimaryHueDarkBrush}"    
                        Margin="10 28 0 0"
                        Width="20" Height="60"
                        RadiusX="10" RadiusY="10"/>
-            <Rectangle Fill="WhiteSmoke"    
+            <Rectangle Fill="{DynamicResource PrimaryHueDarkBrush}"    
                        Margin="10 20 0 0"
                        Width="20" Height="60"
                        RadiusX="10" RadiusY="10"/>
-            <Rectangle Fill="WhiteSmoke"    
+            <Rectangle Fill="{DynamicResource PrimaryHueDarkBrush}"    
                        Margin="10 20 0 0"
                        Width="20" Height="60"
                        RadiusX="10" RadiusY="10"/>
-            <Rectangle Fill="WhiteSmoke"    
+            <Rectangle Fill="{DynamicResource PrimaryHueDarkBrush}"    
                        Margin="10 20 0 0"
                        Width="20" Height="60"
                        RadiusX="10" RadiusY="10"/>
         </StackPanel>
         <StackPanel Grid.Column="2">
-            <Rectangle Fill="WhiteSmoke"    
+            <Rectangle Fill="{DynamicResource PrimaryHueDarkBrush}"    
                        Margin="0 28 10 0"
                        Width="20" Height="60"
                        RadiusX="10" RadiusY="10"/>
-            <Rectangle Fill="WhiteSmoke"    
+            <Rectangle Fill="{DynamicResource PrimaryHueDarkBrush}"    
                        Margin="0 20 10 0"
                        Width="20" Height="60"
                        RadiusX="10" RadiusY="10"/>
-            <Rectangle Fill="WhiteSmoke"    
+            <Rectangle Fill="{DynamicResource PrimaryHueDarkBrush}"    
                        Margin="0 20 10 0"
                        Width="20" Height="60"
                        RadiusX="10" RadiusY="10"/>
-            <Rectangle Fill="WhiteSmoke"    
+            <Rectangle Fill="{DynamicResource PrimaryHueDarkBrush}"    
                        Margin="0 20 10 0"
                        Width="20" Height="60"
                        RadiusX="10" RadiusY="10"/>
@@ -159,7 +163,7 @@
                     <StackPanel Margin="-20 10 0 10" Width="80">
                         <Rectangle Style="{StaticResource ChipBase}" Margin="0 10 0 0"/>
                         <Rectangle Style="{StaticResource ChipLeft}" Margin="0 20 0 0"/>
-                        <Rectangle Style="{StaticResource ChipRight}" Margin="70 0 0 0"/>
+                        <Rectangle Style="{StaticResource ChipRight}" Margin="50 0 0 0"/>
                     </StackPanel>
                     <StackPanel Margin="0 10" Width="80">
                         <Rectangle Style="{StaticResource ChipLeft}" Margin="0 20 0 0"/>
@@ -169,5 +173,22 @@
                 </DockPanel>
             </Grid>
         </Grid>
+        <StackPanel Grid.Column="4" Margin="0 10 10 10"
+                    Background="SaddleBrown">
+            <ToggleButton Margin="0 20 0 0"
+                          Style="{StaticResource MaterialDesignSwitchDarkToggleButton}"
+                          IsChecked="{Binding POvenOn}"/>
+            <ComboBox Style="{StaticResource MaterialDesignComboBox}"
+                      Margin="5 30 0 0"
+                      materialDesign:HintAssist.Hint="Modus"
+                      IsEnabled="{Binding POvenOn}">
+                <ComboBoxItem Content="OU-Hitze"/>
+                <ComboBoxItem Content="Umluft"/>
+            </ComboBox>
+            <materialDesign:TimePicker Margin="5 10 0 0"
+                                       IsEnabled="{Binding POvenOn}"
+                                       materialDesign:HintAssist.Hint="Zeit"
+                                       Is24Hours="True" WithSeconds="False"/>
+        </StackPanel>
     </Grid>
 </UserControl> 

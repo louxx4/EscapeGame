@@ -9,7 +9,7 @@
              Background="Black"
              d:DataContext="{d:DesignInstance Type=viewmodels:PopUpViewModel}"
              mc:Ignorable="d"
-             d:DesignHeight="400" d:DesignWidth="500">
+             d:DesignHeight="400" d:DesignWidth="600">
     <Grid>
         <materialDesign:DialogHost DialogTheme="Inherit">
             <materialDesign:DialogHost.DialogContent>
@@ -26,7 +26,7 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <ContentControl Content=""/>
+                    <ContentControl Content="{Binding PObjectControl}"/>
                     <materialDesign:ColorZone Mode="PrimaryDark" Grid.Row="1"
                                               Effect="{DynamicResource MaterialDesignShadowDepth5}">
                         <TextBlock Margin="12" FontSize="16" Text="{Binding PName}"/>

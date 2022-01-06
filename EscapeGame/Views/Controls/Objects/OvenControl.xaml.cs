@@ -18,9 +18,9 @@ namespace EscapeGame.Views.Controls.Objects
     /// <summary>
     /// Interaction logic for Oven.xaml
     /// </summary>
-    public partial class Oven : UserControl
+    public partial class OvenControl : UserControl
     {
-        public Oven()
+        public OvenControl()
         {
             InitializeComponent();
         }

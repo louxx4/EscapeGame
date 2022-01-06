@@ -15,9 +15,9 @@ namespace EscapeGame.GameSource
 
         private int _currentIndex = -1;
         private readonly List<GameComponent> _sequenceDefinition = new List<GameComponent> {
-            new StoryMessage(RoomID.Story, Character.Robs, CharacterAction.Talking,
-                new string[] {"Hallo und herzlich willkommen zu Escape la familia.",
-                "Mein Name ist Robs und ich werde Sie durch den groben Spielablauf führen."}),
+            //new StoryMessage(RoomID.Story, Character.Robs, CharacterAction.Talking,
+            //    new string[] {"Hallo und herzlich willkommen zu Escape la familia.",
+            //    "Mein Name ist Robs und ich werde Sie durch den groben Spielablauf führen."}),
             new OpenRiddle(RoomID.Kitchen)
         };
 
