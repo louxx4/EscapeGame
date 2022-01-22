@@ -13,7 +13,7 @@ namespace EscapeGame.Models.GameComponents
 
         private readonly Character _character1, _character2;
         private readonly CharacterAction _action1, _action2;
-        private readonly string[] _message;
+        private string[] _message;
         private readonly bool _hasCharacter2;
 
         #endregion
@@ -24,11 +24,11 @@ namespace EscapeGame.Models.GameComponents
         {
             _character1 = c1;
             _action1 = a1;
-            _message = msg;
+            Message = msg;
             _hasCharacter2 = false;
         }
 
-        public StoryMessage(RoomID room, Character c1, CharacterAction a1, 
+        public StoryMessage(RoomID room, Character c1, CharacterAction a1,
             Character c2, CharacterAction a2, string[] msg) : this(room, c1, a1, msg)
         {
             _character2 = c2;
@@ -45,11 +45,13 @@ namespace EscapeGame.Models.GameComponents
             get { return _character1; }
         }
 
+
         public string[] Message
         {
             get { return _message; }
+            set { _message = value; }
         }
-        
+
         public Character Character2
         {
             get { return _character2; }

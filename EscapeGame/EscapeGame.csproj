@@ -100,9 +100,11 @@
     <Compile Include="Models\Game components\StoryMessage.cs" />
     <Compile Include="Models\GameComponent.cs" />
     <Compile Include="ViewModels\Object VMs\OvenViewModel.cs" />
+    <Compile Include="ViewModels\ObjectViewModel.cs" />
     <Compile Include="ViewModels\PopUpViewModel.cs" />
     <Compile Include="ViewModels\Room VMs\KitchenViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
+    <Compile Include="ViewModels\ViewModelEvents.cs" />
     <Compile Include="Views\Controls\KitchenControl.xaml.cs">
       <DependentUpon>KitchenControl.xaml</DependentUpon>
     </Compile>

@@ -57,7 +57,7 @@ namespace EscapeGame.ViewModels
                 PMessage = _sequences[_iterator];
                 _iterator++;
             }
-            else PGame.IsComponentFinished();
+            else PGame.SetComponentFinished();
         }
 
         #endregion

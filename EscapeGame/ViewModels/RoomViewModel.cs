@@ -22,6 +22,23 @@ namespace EscapeGame.ViewModels
             _game = game;
             _room = room;
             _objects = game.GetObjects(room.GetID());
+
+            Register4Events();
+        }
+
+        public RoomViewModel() { }
+
+        private void Register4Events()
+        {
+            _objects.ForEach(roomObject =>
+            {
+                if (roomObject.PVM != null) roomObject.PVM.ComponentFinished += OnComponentFinished;
+            });
+        }
+
+        private void OnComponentFinished(string[] message)
+        {
+            _game.SetComponentFinished(message);
         }
 
         public abstract void SetComponent(GameComponent c);
@@ -44,7 +61,7 @@ namespace EscapeGame.ViewModels
                 if (obj != null)
                 {
                     //TODO Unterscheidung Image / Control
-                    PPopUpVM = new PopUpViewModel(obj.PTooltip, obj.PControl); //obj.PImage);
+                    PPopUpVM = new PopUpViewModel(obj.PID, obj.PTooltip, obj.PVM); //obj.PImage);
                     PIsOpen = true;
                 }
             }

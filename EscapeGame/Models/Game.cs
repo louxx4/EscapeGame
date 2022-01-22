@@ -11,8 +11,6 @@ namespace EscapeGame.Models
 {
     public class Game
     {
-        public event GameStartedEventHandler GameStarted;
-        public event ComponentFinishedEventHandler ComponentFinished;
 
         #region Variables
 
@@ -33,9 +31,9 @@ namespace EscapeGame.Models
             GameStarted?.Invoke(GetNextComponent());
         }
 
-        public void IsComponentFinished()
+        public void SetComponentFinished(string[] message = null)
         {
-            ComponentFinished?.Invoke(GetNextComponent());
+            ComponentFinished?.Invoke(GetNextComponent(message));
         }
 
         public List<RoomObject> GetObjects(RoomID id)
@@ -43,10 +41,17 @@ namespace EscapeGame.Models
             return _objectDeclaration.Get(id);
         } 
 
-        public GameComponent GetNextComponent()
+        public GameComponent GetNextComponent(string[] message = null)
         {
-            return _sequence.GetNextComponent();
+            return _sequence.GetNextComponent(message);
         }
+
+        #endregion
+
+        #region Events 
+
+        public event GameStartedEventHandler GameStarted;
+        public event ComponentFinishedEventHandler ComponentFinished;
 
         #endregion
     }

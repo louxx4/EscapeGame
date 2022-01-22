@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace EscapeGame.Views.Controls.Objects
 {
     /// <summary>
-    /// Interaction logic for Oven.xaml
+    /// Interaction logic for OvenControl.xaml
     /// </summary>
     public partial class OvenControl : UserControl
     {

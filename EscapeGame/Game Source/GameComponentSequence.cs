@@ -18,6 +18,8 @@ namespace EscapeGame.GameSource
             //new StoryMessage(RoomID.Story, Character.Robs, CharacterAction.Talking,
             //    new string[] {"Hallo und herzlich willkommen zu Escape la familia.",
             //    "Mein Name ist Robs und ich werde Sie durch den groben Spielablauf führen."}),
+            new OpenRiddle(RoomID.Kitchen),
+            new StoryMessage(RoomID.Story, Character.Robs, CharacterAction.Talking,null),
             new OpenRiddle(RoomID.Kitchen)
         };
 
@@ -25,10 +27,15 @@ namespace EscapeGame.GameSource
 
         #region Main
 
-        public GameComponent GetNextComponent()
+        public GameComponent GetNextComponent(string[] message)
         {
-            _currentIndex++;
-            return _sequenceDefinition[_currentIndex];
+            GameComponent next = _sequenceDefinition[++_currentIndex];
+            if (message != null && next.GetType() == typeof(StoryMessage))
+            {
+                StoryMessage storyMessage = (StoryMessage)next;
+                storyMessage.Message = message;
+            }
+            return next;
         }
 
         #endregion

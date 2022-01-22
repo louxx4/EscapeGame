@@ -14,6 +14,8 @@ namespace EscapeGame.ViewModels
 
         public KitchenViewModel(Game game, Room room) : base(game, room) { }
 
+        public KitchenViewModel() : base() { }
+
         public override void SetComponent(GameComponent c)
         {
             Enter();

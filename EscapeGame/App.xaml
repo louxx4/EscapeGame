@@ -9,23 +9,33 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <md:CustomColorTheme BaseTheme="Dark" PrimaryColor="DimGray" SecondaryColor="#FFAA4E2C"/>
+                <md:CustomColorTheme BaseTheme="Dark"
+                                     PrimaryColor="DimGray"
+                                     SecondaryColor="#FFAA4E2C" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Resources/ImagesDictionary.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/ImagesDictionary.xaml" />
                 <ResourceDictionary>
-                    <Style x:Key="EscapeGameRoomObject" TargetType="Button" 
+                    <Style x:Key="EscapeGameRoomObject"
+                           TargetType="Button"
                            BasedOn="{StaticResource MaterialDesignFlatButton}">
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate>
-                                    <Border x:Name="border" Background="White"/>
+                                    <Border x:Name="border"
+                                            Background="White" />
                                     <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="border" Property="Opacity" Value="0.2"/>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Setter TargetName="border"
+                                                    Property="Opacity"
+                                                    Value="0.2" />
                                         </Trigger>
-                                        <Trigger Property="IsMouseOver" Value="False">
-                                            <Setter TargetName="border" Property="Opacity" Value="0"/>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="False">
+                                            <Setter TargetName="border"
+                                                    Property="Opacity"
+                                                    Value="0" />
                                         </Trigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>

@@ -1,4 +1,5 @@
 ﻿using CommandHelper;
+using EscapeGame.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,23 +15,28 @@ namespace EscapeGame.ViewModels
     public class PopUpViewModel : INotifyPropertyChanged
     {
         private readonly BitmapImage _image;
+        private readonly int _id;
         private readonly string _name;
-        private readonly ContentControl _objectControl;
+        private readonly ObjectViewModel _objectVM;
 
         #region Main
 
         public PopUpViewModel() { }
 
-        public PopUpViewModel(string name, BitmapImage image)
+        public PopUpViewModel(ObjectID id, string name, BitmapImage image) : this(id, name)
         {
-            _name = name;
             _image = image;
         }
 
-        public PopUpViewModel(string name, ContentControl objectControl)
+        public PopUpViewModel(ObjectID id, string name, ObjectViewModel objectVM) : this(id, name)
         {
+            _objectVM = objectVM;
+        }
+
+        public PopUpViewModel(ObjectID id, string name)
+        {
+            _id = (int)id;
             _name = name;
-            _objectControl = objectControl;
         }
 
         #endregion
@@ -42,14 +48,20 @@ namespace EscapeGame.ViewModels
             get { return _name; }
         }
 
+        public int PID
+        {
+            get { return _id; }
+        }
+
+
         public BitmapImage PImage
         {
             get { return _image; }
         }
-        
-        public ContentControl PObjectControl
+
+        public ObjectViewModel PObjectVM
         {
-            get { return _objectControl;  }
+            get { return _objectVM; }
         }
 
         #endregion

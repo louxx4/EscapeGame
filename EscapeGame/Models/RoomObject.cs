@@ -1,6 +1,7 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using EscapeGame.Enums;
+using EscapeGame.ViewModels;
 using EscapeGame.Views.Converters;
 
 namespace EscapeGame.Models
@@ -17,10 +18,10 @@ namespace EscapeGame.Models
             PUseImage = false;
         }
 
-        public RoomObject(ObjectID id, string tooltip, ContentControl control) : this(id, tooltip)
+        public RoomObject(ObjectID id, string tooltip, ObjectViewModel vm) : this(id, tooltip)
         {
             PUseImage = true;
-            PControl = control;
+            PVM = vm;
         }
 
         #endregion
@@ -34,6 +35,8 @@ namespace EscapeGame.Models
         public BitmapImage PImage => ObjectToImage.Convert(PID);
 
         public ContentControl PControl { get; }
+
+        public ObjectViewModel PVM { get; }
 
         public ObjectID PID { get; }
 

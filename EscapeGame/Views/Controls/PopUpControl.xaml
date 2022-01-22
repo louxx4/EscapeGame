@@ -4,12 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EscapeGame.Views.Controls"
+             xmlns:octrls="clr-namespace:EscapeGame.Views.Controls.Objects"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:viewmodels="clr-namespace:EscapeGame.ViewModels"
+             xmlns:vm="clr-namespace:EscapeGame.ViewModels"
              Background="Black"
-             d:DataContext="{d:DesignInstance Type=viewmodels:PopUpViewModel}"
+             d:DataContext="{d:DesignInstance Type=vm:PopUpViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="400" d:DesignWidth="600">
+    <UserControl.Resources>
+        <DataTemplate x:Key="Oven">
+            <octrls:OvenControl DataContext="{Binding PObjectVM}" />
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid>
         <materialDesign:DialogHost DialogTheme="Inherit">
             <materialDesign:DialogHost.DialogContent>
@@ -26,7 +32,18 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <ContentControl Content="{Binding PObjectControl}"/>
+                    <ContentControl Content="{Binding}">
+                        <ContentControl.Style>
+                            <Style TargetType="ContentControl">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding PID}" Value="1">
+                                        <Setter Property="ContentControl.ContentTemplate"
+                                                Value="{StaticResource Oven}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ContentControl.Style>
+                    </ContentControl>
                     <materialDesign:ColorZone Mode="PrimaryDark" Grid.Row="1"
                                               Effect="{DynamicResource MaterialDesignShadowDepth5}">
                         <TextBlock Margin="12" FontSize="16" Text="{Binding PName}"/>
