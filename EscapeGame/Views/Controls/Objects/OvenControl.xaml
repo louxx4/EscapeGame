@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:EscapeGame.Views.Controls.Objects"
              mc:Ignorable="d"
@@ -238,60 +239,73 @@
                 </DockPanel>
             </Grid>
         </Grid>
-        <StackPanel Grid.Column="4"
-                    Margin="0 10 10 10"
-                    Background="SaddleBrown">
-            <ToggleButton Margin="0 20 0 0"
-                          Style="{StaticResource MaterialDesignSwitchDarkToggleButton}"
-                          IsChecked="{Binding POvenOn}" />
-            <ComboBox Style="{StaticResource MaterialDesignComboBox}"
-                      Margin="5 30 0 0"
-                      materialDesign:HintAssist.Hint="Modus"
-                      IsEnabled="{Binding POvenOn}"
-                      HorizontalAlignment="Left"
-                      Width="85">
-                <ComboBoxItem Content="OU-Hitze" />
-                <ComboBoxItem Content="Oberhitze" />
-                <ComboBoxItem Content="Unterhitze" />
-                <ComboBoxItem Content="Umluft" />
-                <ComboBoxItem Content="Grill" />
-                <ComboBoxItem Content="Pommes" />
-            </ComboBox>
-            <materialDesign:TimePicker Margin="5 10 0 0"
-                                       IsEnabled="{Binding POvenOn}"
-                                       materialDesign:HintAssist.Hint="Zeit"
-                                       Is24Hours="True"
-                                       WithSeconds="False"
-                                       SelectedTime="{Binding PBakingTime}" />
-            <Button Background="#FFC9A9A9"
-                    Margin="0 40 0 0"
-                    Command="{Binding CmdBake}"
-                    IsEnabled="{Binding POvenOn}"
-                    materialDesign:ButtonProgressAssist.IndicatorForeground="Black"
-                    materialDesign:ButtonProgressAssist.IsIndeterminate="{Binding PIsIndeterminate}"
-                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding PIsBaking}"
-                    materialDesign:ButtonProgressAssist.Value="{Binding PBakingProgress}">
-                <Button.Style>
-                    <Style TargetType="Button"
-                           BasedOn="{StaticResource MaterialDesignFloatingActionLightButton}">
-                        <!--<Style.Triggers>
-                            <MultiDataTrigger>
-                                <MultiDataTrigger.Conditions>
-                                    <Condition Binding="{Binding POvenOn}"
-                                               Value="True" />
-                                    <Condition Binding="{Binding PIsBakingEnabled}"
-                                               Value="True" />
-                                </MultiDataTrigger.Conditions>
-                                <Setter Property="IsEnabled"
-                                        Value="True" />
-                            </MultiDataTrigger>
-                        </Style.Triggers>-->
-                    </Style>
-                </Button.Style>
-                <materialDesign:PackIcon Kind="Fire"
-                                         Height="30"
-                                         Width="30" />
-            </Button>
-        </StackPanel>
+        <Border Grid.Column="4"
+                Margin="0 5 5 5"
+                BorderBrush="WhiteSmoke"
+                BorderThickness="1">
+            <StackPanel Margin="10 5">
+                <ToggleButton Margin="0 20 0 0"
+                              Style="{StaticResource MaterialDesignSwitchAccentToggleButton}"
+                              IsChecked="{Binding POvenOn}" />
+                <ComboBox Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                          Margin="0 20 0 0"
+                          Foreground="WhiteSmoke"
+                          materialDesign:HintAssist.Hint="Modus"
+                          materialDesign:HintAssist.FloatingScale="0.8"
+                          materialDesign:HintAssist.FloatingOffset="0 25"
+                          IsEnabled="{Binding POvenOn}">
+                    <ComboBox.Items>
+                        <ComboBoxItem Content="OU-Hitze"
+                                      IsSelected="True" />
+                        <ComboBoxItem Content="Oberhitze" />
+                        <ComboBoxItem Content="Unterhitze" />
+                        <ComboBoxItem Content="Umluft" />
+                        <ComboBoxItem Content="Grill" />
+                        <ComboBoxItem Content="Pommes" />
+                    </ComboBox.Items>
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="SelectionChanged">
+                            <b:InvokeCommandAction Command="{Binding CmdSettingsModified}" />
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+                </ComboBox>
+                <materialDesign:TimePicker Margin="0 10 0 0"
+                                           IsEnabled="{Binding POvenOn}"
+                                           Is24Hours="True"
+                                           Foreground="WhiteSmoke"
+                                           Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
+                                           materialDesign:HintAssist.Hint="Zeit"
+                                           materialDesign:HintAssist.FloatingScale="0.8"
+                                           materialDesign:HintAssist.FloatingOffset="0 25"
+                                           WithSeconds="False"
+                                           SelectedTime="{Binding PBakingTime}">
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="SelectionChanged">
+                            <b:InvokeCommandAction Command="{Binding CmdSettingsModified}" />
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+                </materialDesign:TimePicker>
+                <TextBox Foreground="WhiteSmoke"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         IsEnabled="{Binding POvenOn}"
+                         Text="{Binding PTemperature}"
+                         Margin="0 5 0 0"
+                         materialDesign:HintAssist.HelperText="Temperatur"
+                         materialDesign:HintAssist.FloatingScale="0.8"
+                         materialDesign:HintAssist.FloatingOffset="0 25" />
+                <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                        Margin="0 40 0 0"
+                        Command="{Binding CmdBake}"
+                        IsEnabled="{Binding PIsBakingEnabled}"
+                        materialDesign:ButtonProgressAssist.IndicatorForeground="Black"
+                        materialDesign:ButtonProgressAssist.IsIndeterminate="{Binding PIsIndeterminate}"
+                        materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding PIsBaking}"
+                        materialDesign:ButtonProgressAssist.Value="{Binding PBakingProgress}">
+                    <materialDesign:PackIcon Kind="Fire"
+                                             Height="30"
+                                             Width="30" />
+                </Button>
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl> 

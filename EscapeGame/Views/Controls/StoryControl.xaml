@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:EscapeGame.Views.Controls"
              xmlns:animations="clr-namespace:EscapeGame.Views.Animations"
              xmlns:elements="clr-namespace:EscapeGame.Views.Elements"
-             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:vm="clr-namespace:EscapeGame.ViewModels"
              d:DataContext="{d:DesignInstance Type=vm:StoryViewModel}"
              mc:Ignorable="d" Background="#FF1C1C1C"
@@ -28,13 +28,13 @@
                                        HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="Auto"
                                        Foreground="WhiteSmoke" Speech="{Binding PMessage}"
                                        FontSize="19" FontFamily="Consolas">
-                    <i:Interaction.Triggers>
-                        <i:PropertyChangedTrigger Binding="{Binding PMessage}">
+                    <b:Interaction.Triggers>
+                        <b:PropertyChangedTrigger Binding="{Binding PMessage}">
                             <animations:SpeechBubbleAnimation 
                             Speech="{Binding Speech, ElementName=tbSpeechBubble}"
                             Completed="{Binding PArrowEnabled, Mode=OneWayToSource}"/>
-                        </i:PropertyChangedTrigger>
-                    </i:Interaction.Triggers>
+                        </b:PropertyChangedTrigger>
+                    </b:Interaction.Triggers>
                 </elements:SpeechBubble>
             </materialDesign:Card>
             <Button
@@ -57,15 +57,15 @@
                              Character="{Binding PCharacter2}"
                              CharacterAction="{Binding PAction2}"
                              Duration="{Binding PDuration}">
-                <i:Interaction.Triggers>
-                    <i:PropertyChangedTrigger Binding="{Binding PMessage}">
+                <b:Interaction.Triggers>
+                    <b:PropertyChangedTrigger Binding="{Binding PMessage}">
                         <animations:TalkingAnimation
                             Storyboard.TargetName="person2"
                             Character="{Binding Character, ElementName=person2}"
                             CharacterAction="{Binding CharacterAction, ElementName=person2}"
                             Duration="{Binding Duration, ElementName=person2}"/>
-                    </i:PropertyChangedTrigger>
-                </i:Interaction.Triggers>
+                    </b:PropertyChangedTrigger>
+                </b:Interaction.Triggers>
             </elements:Person>
             <elements:Person x:Name="person1" Grid.Column="1"
                              Visibility="{Binding PVisibility1}"
@@ -73,15 +73,15 @@
                              Character="{Binding PCharacter1}"
                              CharacterAction="{Binding PAction1}"
                              Duration="{Binding PDuration}">
-                <i:Interaction.Triggers>
-                    <i:PropertyChangedTrigger Binding="{Binding PMessage}">
+                <b:Interaction.Triggers>
+                    <b:PropertyChangedTrigger Binding="{Binding PMessage}">
                         <animations:TalkingAnimation
                             Storyboard.TargetName="person1"
                             Character="{Binding Character, ElementName=person1}"
                             CharacterAction="{Binding CharacterAction, ElementName=person1}"
                             Duration="{Binding Duration, ElementName=person1}"/>
-                    </i:PropertyChangedTrigger>
-                </i:Interaction.Triggers>
+                    </b:PropertyChangedTrigger>
+                </b:Interaction.Triggers>
             </elements:Person>
         </Grid>
     </Grid>

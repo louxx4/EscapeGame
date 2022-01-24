@@ -15,7 +15,7 @@ namespace EscapeGame.ViewModels
         private bool _ovenOn, _isBaking, _isIndeterminate, _isBakingEnabled;
         private int _bakingProgress;
         private DateTime _bakingTime;
-        private string _ovenMode;
+        private string _ovenMode, _temperature;
 
         #region Main
 
@@ -40,10 +40,7 @@ namespace EscapeGame.ViewModels
 
         private void OvenSettingsModified()
         {
-            if (!POvenMode.Equals(null) &&
-                !(PBakingTime.Equals(null) || PBakingTime.ToString("hh:mm:ss").Equals("00:00:00")))
-                PIsBakingEnabled = true;
-            else PIsBakingEnabled = false;
+            PIsBakingEnabled = !(POvenMode is null || PBakingTime.ToString("hh:mm:ss").Equals("12:00:00"));
         }
 
         #endregion
@@ -52,7 +49,7 @@ namespace EscapeGame.ViewModels
 
         public bool POvenOn
         {
-            get { return _ovenOn; }
+            get => _ovenOn;
             set
             {
                 _ovenOn = value;
@@ -62,7 +59,7 @@ namespace EscapeGame.ViewModels
 
         public bool PIsBaking
         {
-            get { return _isBaking; }
+            get => _isBaking;
             set
             {
                 _isBaking = value;
@@ -72,7 +69,7 @@ namespace EscapeGame.ViewModels
 
         public bool PIsBakingEnabled
         {
-            get { return _isBakingEnabled; }
+            get => _isBakingEnabled;
             set
             {
                 _isBakingEnabled = value;
@@ -82,7 +79,7 @@ namespace EscapeGame.ViewModels
 
         public bool PIsIndeterminate
         {
-            get { return _isIndeterminate; }
+            get => _isIndeterminate;
             set
             {
                 _isIndeterminate = value;
@@ -92,7 +89,7 @@ namespace EscapeGame.ViewModels
 
         public int PBakingProgress
         {
-            get { return _bakingProgress; }
+            get => _bakingProgress;
             set
             {
                 _bakingProgress = value;
@@ -100,9 +97,19 @@ namespace EscapeGame.ViewModels
             }
         }
 
+        public string PTemperature
+        {
+            get => _temperature;
+            set
+            {
+                _temperature = value;
+                NotifyOnPropertyChanged("PTemperature");
+            }
+        }
+
         public DateTime PBakingTime
         {
-            get { return _bakingTime; }
+            get => _bakingTime;
             set
             {
                 _bakingTime = value;
@@ -112,7 +119,7 @@ namespace EscapeGame.ViewModels
 
         public string POvenMode
         {
-            get { return _ovenMode; }
+            get => _ovenMode;
             set
             {
                 _ovenMode = value;
@@ -124,15 +131,9 @@ namespace EscapeGame.ViewModels
 
         #region Commands
 
-        public ICommand CmdBake
-        {
-            get { return new RelayCommand(o => BakeFries()); }
-        }
+        public ICommand CmdBake => new RelayCommand(o => BakeFries());
 
-        public ICommand CmdSettingsModified
-        {
-            get { return new RelayCommand(o => OvenSettingsModified()); }
-        }
+        public ICommand CmdSettingsModified => new RelayCommand(o => OvenSettingsModified());
 
         #endregion
     }
