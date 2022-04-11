@@ -54,7 +54,7 @@
                 <Setter.Value>
                     <LinearGradientBrush>
                         <GradientStop Color="#FF5D3B19"
-                                      Offset="0.1" />
+                                      Offset="{Binding PBakingProgress}" /> 
                         <GradientStop Color="#FFFFF40B"
                                       Offset="1.2" />
                     </LinearGradientBrush>
@@ -111,7 +111,7 @@
             <ColumnDefinition Width="60" />
             <ColumnDefinition />
             <ColumnDefinition Width="60" />
-            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="105" />
         </Grid.ColumnDefinitions>
         <Rectangle Fill="Black"
                    Grid.ColumnSpan="3"
@@ -199,7 +199,7 @@
                 <DockPanel>
                     <StackPanel Margin="0 10"
                                 Width="100">
-                        <Rectangle Style="{StaticResource ChipRight}" />
+                        <Rectangle Style="{StaticResource ChipRight}"/>
                         <Rectangle Style="{StaticResource ChipLeft}"
                                    Margin="20 -30 0 0" />
                         <Rectangle Style="{StaticResource ChipReverseRight}"
@@ -248,6 +248,7 @@
                               Style="{StaticResource MaterialDesignSwitchAccentToggleButton}"
                               IsChecked="{Binding POvenOn}" />
                 <ComboBox Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                          SelectedValue="{Binding POvenMode}"
                           Margin="0 20 0 0"
                           Foreground="WhiteSmoke"
                           materialDesign:HintAssist.Hint="Modus"
@@ -280,7 +281,7 @@
                                            WithSeconds="False"
                                            SelectedTime="{Binding PBakingTime}">
                     <b:Interaction.Triggers>
-                        <b:EventTrigger EventName="SelectionChanged">
+                        <b:EventTrigger EventName="SelectedTimeChanged">
                             <b:InvokeCommandAction Command="{Binding CmdSettingsModified}" />
                         </b:EventTrigger>
                     </b:Interaction.Triggers>
@@ -299,8 +300,7 @@
                         IsEnabled="{Binding PIsBakingEnabled}"
                         materialDesign:ButtonProgressAssist.IndicatorForeground="Black"
                         materialDesign:ButtonProgressAssist.IsIndeterminate="{Binding PIsIndeterminate}"
-                        materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding PIsBaking}"
-                        materialDesign:ButtonProgressAssist.Value="{Binding PBakingProgress}">
+                        materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding PIsBaking}">
                     <materialDesign:PackIcon Kind="Fire"
                                              Height="30"
                                              Width="30" />

@@ -1,4 +1,5 @@
 ﻿using CommandHelper;
+using EscapeGame.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,10 +13,11 @@ namespace EscapeGame.ViewModels
 {
     public class OvenViewModel : ObjectViewModel
     {
-        private bool _ovenOn, _isBaking, _isIndeterminate, _isBakingEnabled;
-        private int _bakingProgress;
+        private bool _ovenOn, _isBaking, _isIndeterminate, _isBakingEnabled, _firstTimeBaking = true;
+        private int _temperature = 0; //_bakingProgress,
+        private float _bakingProgress = (float)BakingProgress.Raw;
         private DateTime _bakingTime;
-        private string _ovenMode, _temperature;
+        private string _ovenMode;
 
         #region Main
 
@@ -24,15 +26,21 @@ namespace EscapeGame.ViewModels
         private void BakeFries()
         {
             PIsBaking = true;
+            int interval = _firstTimeBaking ? 10000 : 5000;
             PIsIndeterminate = true;
-            Timer timer = new Timer { Interval = 5000, AutoReset = false };
+            Timer timer = new Timer { Interval = interval, AutoReset = false };
             timer.Elapsed += (o, e) =>
             {
                 PIsIndeterminate = false;
-                TriggerOnComponentFinished(new string[] { $"Eine Backzeit von {PBakingTime:T}?",
-                "Das wär ja noch schöner, wenn wir das hier 1:1 abbilden würden.",
-                "Ich bin hier immernoch der Spielmaster! Das virtuelle Backen dauert...",
-                "...acht Sekunden! Habe ich soeben spontan entschlossen." });
+                if (_firstTimeBaking)
+                {
+                    TriggerOnComponentFinished(new string[] { $"Eine Backzeit von {PBakingTime:T}?",
+                        "Das wär ja noch schöner, wenn wir das hier 1:1 abbilden würden.",
+                        "Ich bin hier immernoch der Spielmaster! Das virtuelle Backen dauert...",
+                        "...fünf Sekunden! Habe ich soeben spontan entschlossen." });
+                    _firstTimeBaking = false;
+                }
+                else { PBakingProgress = (float)BakingProgress.Ready; }
                 timer.Stop();
             };
             timer.Enabled = true;
@@ -40,7 +48,7 @@ namespace EscapeGame.ViewModels
 
         private void OvenSettingsModified()
         {
-            PIsBakingEnabled = !(POvenMode is null || PBakingTime.ToString("hh:mm:ss").Equals("12:00:00"));
+            PIsBakingEnabled = !(POvenOn == false || POvenMode is null || PBakingTime.ToString("hh:mm:ss").Equals("12:00:00"));
         }
 
         #endregion
@@ -87,9 +95,19 @@ namespace EscapeGame.ViewModels
             }
         }
 
-        public int PBakingProgress
+        //public int PBakingProgress
+        //{
+        //    get => _bakingProgress;
+        //    set
+        //    {
+        //        _bakingProgress = value;
+        //        NotifyOnPropertyChanged("PBakingProgress");
+        //    }
+        //}
+
+        public float PBakingProgress
         {
-            get => _bakingProgress;
+            get => _bakingProgress / 10;
             set
             {
                 _bakingProgress = value;
@@ -97,7 +115,7 @@ namespace EscapeGame.ViewModels
             }
         }
 
-        public string PTemperature
+        public int PTemperature
         {
             get => _temperature;
             set

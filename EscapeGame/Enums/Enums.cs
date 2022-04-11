@@ -31,4 +31,11 @@
     {
         Talking = 0
     }
+
+    public enum BakingProgress
+    {
+        Raw = -10,
+        Ready = 1,
+        Burnt = 10
+    }
 }
