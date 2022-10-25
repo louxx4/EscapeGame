@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EscapeGame.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace EscapeGame.ViewModels
         #region Main
 
         public ObjectViewModel() { }
+
+        public abstract void InvokeOnEnter(ActionID action);
 
         #endregion
 
@@ -30,7 +33,7 @@ namespace EscapeGame.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 
-        protected void TriggerOnComponentFinished(string[] message)
+        protected void TriggerOnComponentFinished(string[] message = null)
         {
             ComponentFinished?.Invoke(message);
         }

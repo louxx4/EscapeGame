@@ -38,4 +38,9 @@
         Ready = 1,
         Burnt = 10
     }
+
+    public enum ActionID
+    {
+        Bake = 0
+    }
 }

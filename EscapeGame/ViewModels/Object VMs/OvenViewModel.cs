@@ -26,7 +26,7 @@ namespace EscapeGame.ViewModels
         private void BakeFries()
         {
             PIsBaking = true;
-            int interval = _firstTimeBaking ? 10000 : 5000;
+            int interval = _firstTimeBaking ? 1000 : 5000;
             PIsIndeterminate = true;
             Timer timer = new Timer { Interval = interval, AutoReset = false };
             timer.Elapsed += (o, e) =>
@@ -34,10 +34,7 @@ namespace EscapeGame.ViewModels
                 PIsIndeterminate = false;
                 if (_firstTimeBaking)
                 {
-                    TriggerOnComponentFinished(new string[] { $"Eine Backzeit von {PBakingTime:T}?",
-                        "Das wär ja noch schöner, wenn wir das hier 1:1 abbilden würden.",
-                        "Ich bin hier immernoch der Spielmaster! Das virtuelle Backen dauert...",
-                        "...fünf Sekunden! Habe ich soeben spontan entschlossen." });
+                    TriggerOnComponentFinished(new string[] { PBakingTime.Minute.ToString() } );
                     _firstTimeBaking = false;
                 }
                 else { PBakingProgress = (float)BakingProgress.Ready; }
@@ -49,6 +46,18 @@ namespace EscapeGame.ViewModels
         private void OvenSettingsModified()
         {
             PIsBakingEnabled = !(POvenOn == false || POvenMode is null || PBakingTime.ToString("hh:mm:ss").Equals("12:00:00"));
+        }
+
+        public override void InvokeOnEnter(ActionID actionID)
+        {
+            switch(actionID)
+            {
+                case ActionID.Bake:
+                    if(CmdBake.CanExecute(null)) CmdBake.Execute(null);
+                    break;
+                default:
+                    break;
+            }
         }
 
         #endregion

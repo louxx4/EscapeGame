@@ -298,7 +298,7 @@
                         Margin="0 40 0 0"
                         Command="{Binding CmdBake}"
                         IsEnabled="{Binding PIsBakingEnabled}"
-                        materialDesign:ButtonProgressAssist.IndicatorForeground="Black"
+                        materialDesign:ButtonProgressAssist.IndicatorForeground="#FFBA4F31"                      
                         materialDesign:ButtonProgressAssist.IsIndeterminate="{Binding PIsIndeterminate}"
                         materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding PIsBaking}">
                     <materialDesign:PackIcon Kind="Fire"

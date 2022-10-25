@@ -19,6 +19,11 @@ namespace EscapeGame.ViewModels
         public override void SetComponent(GameComponent c)
         {
             Enter();
+            //Invoke action on enter, if intended for the game component
+            if (c?.PInvokeOnEnter == true)
+            {
+                GetObject(c.PInvokeObjectID).PVM.InvokeOnEnter(c.PInvokeActionID);
+            }
         }
 
         #endregion

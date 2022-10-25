@@ -12,13 +12,12 @@ namespace EscapeGame.Models.GameComponents
         #region Variables
 
         #endregion
-         
+
         #region Main
 
-        public OpenRiddle(RoomID room) : base(room)
-        {
+        public OpenRiddle(RoomID room) : base(room) { }
 
-        }
+        public OpenRiddle(RoomID room, ObjectID roomobject, ActionID action) : base(room, roomobject, action) { }
 
         #endregion
 
